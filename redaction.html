@@ -2,13 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Fondation SCP - Rédaction de Rapport</title>
+  <title>SCPOS — Rédaction</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="scp-theme">
   <header>
-    <h1>FONDATION SCP - RÉDACTION INTERNE</h1>
-    <div id="authStatus"></div>
+    <div class="os-bar">
+      <h1>SCPOS v4.08 — ÉDITEUR SÉCURISÉ</h1>
+      <div id="authStatus"></div>
+    </div>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="scps.html">Base SCP</a>
@@ -21,27 +23,27 @@
   </header>
 
   <main>
-    <h2>[CLASSIFIÉ] SOUMISSION DE NOUVEAU RAPPORT</h2>
+    <h2>SOUMISSION DE RAPPORT</h2>
     
     <form id="scpReportForm">
       <div class="form-group">
-        <label for="category">Catégorie du rapport :</label>
+        <label for="category">Catégorie :</label>
         <select id="category" required>
           <option value="Scientifique">Scientifique</option>
           <option value="Securite">Sécurité</option>
           <option value="Administratif">Administratif</option>
-          <option value="FIM">FIM (Force d'Intervention Mobile)</option>
+          <option value="FIM">FIM</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="author">Nom / Prénom ou Matricule :</label>
+        <label for="author">Auteur / Matricule :</label>
         <input type="text" id="author" placeholder="ex: Dr. Zeyfix / Agent #4082" required>
       </div>
 
       <div class="form-group">
-        <label for="reportTitle">Nom / Type du rapport :</label>
-        <input type="text" id="reportTitle" placeholder="ex: Rapport d'incident SCP-173-B" required>
+        <label for="reportTitle">Titre du rapport :</label>
+        <input type="text" id="reportTitle" placeholder="ex: Incident SCP-173-B" required>
       </div>
 
       <div class="form-group">
@@ -51,29 +53,33 @@
 
       <div class="form-group">
         <label for="content">Contenu du rapport :</label>
-        <textarea id="content" rows="10" placeholder="Insérer le texte du rapport..." required></textarea>
+        <textarea id="content" rows="8" placeholder="Saisissez le texte..." required></textarea>
       </div>
 
       <div class="form-group">
-        <label for="attachment">Pièce jointe (URL d'image - facultatif) :</label>
+        <label for="attachment">Lien pièce jointe (URL) :</label>
         <input type="url" id="attachment" placeholder="https://...">
       </div>
 
       <div class="form-group">
-        <label for="extraInfo">Informations supplémentaires / Censure :</label>
-        <textarea id="extraInfo" rows="4" placeholder="Notes de sécurité..."></textarea>
+        <label for="extraInfo">Notes complémentaires :</label>
+        <textarea id="extraInfo" rows="3" placeholder="Informations additionnelles..."></textarea>
       </div>
 
       <div class="button-group">
-        <button type="button" id="saveDraftBtn" onclick="saveDraft()">💾 Sauvegarder en brouillon</button>
-        <button type="submit" id="submitBtn">📤 Envoyer le rapport</button>
+        <button type="button" id="saveDraftBtn" onclick="saveDraft()">💾 Enregistrer Brouillon</button>
+        <button type="submit" id="submitBtn">📤 Envoyer au Réseau</button>
       </div>
     </form>
   </main>
 
-  <footer>
-    <p>&copy; Fondation SCP — Formulaire de soumission officiel.</p>
-  </footer>
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <span class="start-btn">SCPOS</span>
+      <span>Éditeur de texte v2.4</span>
+    </div>
+    <div class="taskbar-right" id="clock">12:00</div>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
