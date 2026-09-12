@@ -1,124 +1,182 @@
-/* Style Sombre Terminal SCP */
+/* DESIGN STRICT FONDATION SCP - STYLE WIKIDOT INTRA-SITE */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;700&display=swap');
+
+:root {
+  --scp-bg: #f4f4f4;
+  --scp-text: #111111;
+  --scp-red: #900000;
+  --scp-border: #888888;
+  --scp-dark-bg: #1a1a1a;
+  --scp-card-bg: #ffffff;
+  --scp-header-bg: #222222;
+}
+
 body.scp-theme {
-  background-color: #0d0d0d;
-  color: #dcdcdc;
-  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--scp-bg);
+  color: var(--scp-text);
+  font-family: 'Noto Sans', sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.6;
 }
 
+/* Header & Navigation */
 header {
-  background-color: #1a1a1a;
-  border-bottom: 2px solid #a00000;
-  padding: 1rem;
+  background-color: var(--scp-header-bg);
+  border-bottom: 4px solid var(--scp-red);
+  color: #ffffff;
+  padding: 20px;
   text-align: center;
 }
 
 header h1 {
-  color: #e50914;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
   margin: 0 0 10px 0;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+#authStatus button {
+  background-color: var(--scp-red);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: 'Courier Prime', monospace;
+}
+
+nav {
+  margin-top: 15px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
 }
 
 nav a {
-  color: #aaaaaa;
+  color: #cccccc;
   text-decoration: none;
   margin: 0 10px;
   padding: 5px 10px;
-  border: 1px solid transparent;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
 }
 
 nav a:hover, nav a.active {
   color: #ffffff;
-  border-color: #a00000;
-  background-color: #2a0000;
+  background-color: var(--scp-red);
 }
 
+/* Container Principal */
 main {
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 15px;
+  max-width: 900px;
+  margin: 30px auto;
+  background: var(--scp-card-bg);
+  padding: 40px;
+  border: 1px solid var(--scp-border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-h2, h3 {
-  color: #a00000;
-  border-bottom: 1px dashed #444;
+h2 {
+  font-family: 'Courier Prime', monospace;
+  color: var(--scp-red);
+  border-bottom: 2px solid var(--scp-red);
   padding-bottom: 5px;
+  text-transform: uppercase;
 }
 
+/* Bannières et Avertissements Officiels */
 .warning-banner {
-  background-color: #330000;
-  border: 1px solid #ff0000;
+  border: 3px double var(--scp-red);
+  background-color: #fff0f0;
   padding: 15px;
-  margin-bottom: 20px;
   text-align: center;
+  margin-bottom: 25px;
 }
 
 .warning-banner h2 {
-  color: #ff3333;
+  border: none;
   margin-top: 0;
 }
 
-.motto-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.motto-card, .dept-card, .mtf-card {
-  background-color: #141414;
-  border: 1px solid #333;
-  border-left: 4px solid #a00000;
+/* Cartes Départements & FIM */
+.dept-card, .mtf-card, .report-card {
+  border: 1px solid #ccc;
+  background-color: #fcfcfc;
   padding: 15px;
   margin-bottom: 15px;
+  border-left: 5px solid var(--scp-red);
 }
 
-.dept-category, .mtf-section {
-  margin-bottom: 30px;
+.dept-card h4, .mtf-card h4, .report-card h3 {
+  margin-top: 0;
+  color: #000;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.1rem;
 }
 
-/* Formulaires */
+/* Formulaire de Rédaction Strict */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
   display: block;
+  font-weight: bold;
+  font-family: 'Courier Prime', monospace;
   margin-bottom: 5px;
-  color: #ff6666;
+  text-transform: uppercase;
 }
 
 .form-group input, .form-group select, .form-group textarea {
   width: 100%;
-  padding: 8px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
-  color: #fff;
-  font-family: inherit;
+  padding: 10px;
+  border: 1px solid #777;
+  background-color: #fdfdfd;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.95rem;
   box-sizing: border-box;
 }
 
+.form-group textarea {
+  resize: vertical;
+}
+
 .button-group button, .filters button {
-  background-color: #2a0000;
+  background-color: #333;
   color: #fff;
-  border: 1px solid #a00000;
-  padding: 10px 15px;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Courier Prime', monospace;
   cursor: pointer;
-  font-family: inherit;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.button-group button#submitBtn {
+  background-color: var(--scp-red);
 }
 
 .button-group button:hover, .filters button:hover {
-  background-color: #ff0000;
-  color: #000;
+  opacity: 0.9;
+}
+
+.delete-btn {
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Courier Prime', monospace;
+  margin-top: 10px;
 }
 
 footer {
   text-align: center;
-  padding: 20px;
-  border-top: 1px solid #222;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.8rem;
   color: #666;
+  margin: 30px 0;
 }
