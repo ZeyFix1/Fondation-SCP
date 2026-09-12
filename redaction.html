@@ -7,21 +7,23 @@
 </head>
 <body class="scp-theme">
   <header>
-    <h1>FONDATION SCP - BASE DE DONNÉES INTRA-SITE</h1>
+    <h1>FONDATION SCP - RÉDACTION INTERNE</h1>
+    <div id="authStatus"></div>
     <nav>
       <a href="index.html">Accueil</a>
+      <a href="scps.html">Base SCP</a>
       <a href="departements.html">Départements</a>
       <a href="mtf.html">FIM / MTF</a>
-      <a href="rapports.html">Base des Rapports</a>
-      <a href="redaction.html" class="active">Nouveau Rapport</a>
+      <a href="rapport.html">Base Rapports</a>
+      <a href="redaction.html" class="active">Rédaction</a>
+      <a href="console.html">>_ TERMINAL</a>
     </nav>
   </header>
 
   <main>
-    <h2>[CLASSIFIÉ] NOUVEAU RAPPORT INTERNE</h2>
+    <h2>[CLASSIFIÉ] SOUMISSION DE NOUVEAU RAPPORT</h2>
     
     <form id="scpReportForm">
-      <!-- Catégorie du Rapport -->
       <div class="form-group">
         <label for="category">Catégorie du rapport :</label>
         <select id="category" required>
@@ -32,49 +34,46 @@
         </select>
       </div>
 
-      <!-- Agent / Chercheur -->
       <div class="form-group">
         <label for="author">Nom / Prénom ou Matricule :</label>
         <input type="text" id="author" placeholder="ex: Dr. Zeyfix / Agent #4082" required>
       </div>
 
-      <!-- Intitulé -->
       <div class="form-group">
         <label for="reportTitle">Nom / Type du rapport :</label>
         <input type="text" id="reportTitle" placeholder="ex: Rapport d'incident SCP-173-B" required>
       </div>
 
-      <!-- Date -->
       <div class="form-group">
         <label for="reportDate">Date :</label>
         <input type="date" id="reportDate" required>
       </div>
 
-      <!-- Contenu -->
       <div class="form-group">
         <label for="content">Contenu du rapport :</label>
         <textarea id="content" rows="10" placeholder="Insérer le texte du rapport..." required></textarea>
       </div>
 
-      <!-- Pièce jointe (facultatif) -->
       <div class="form-group">
-        <label for="attachment">Pièce jointe (URL ou image - facultatif) :</label>
-        <input type="url" id="attachment" placeholder="https://..." >
+        <label for="attachment">Pièce jointe (URL d'image - facultatif) :</label>
+        <input type="url" id="attachment" placeholder="https://...">
       </div>
 
-      <!-- Informations supplémentaires -->
       <div class="form-group">
-        <label for="extraInfo">Informations supplémentaires / Notes de sécurité :</label>
-        <textarea id="extraInfo" rows="4" placeholder="Accès restreint aux accréditations Niveau 3..."></textarea>
+        <label for="extraInfo">Informations supplémentaires / Censure :</label>
+        <textarea id="extraInfo" rows="4" placeholder="Notes de sécurité..."></textarea>
       </div>
 
-      <!-- Boutons d'action -->
       <div class="button-group">
         <button type="button" id="saveDraftBtn" onclick="saveDraft()">💾 Sauvegarder en brouillon</button>
         <button type="submit" id="submitBtn">📤 Envoyer le rapport</button>
       </div>
     </form>
   </main>
+
+  <footer>
+    <p>&copy; Fondation SCP — Formulaire de soumission officiel.</p>
+  </footer>
 
   <script src="js/app.js"></script>
 </body>
