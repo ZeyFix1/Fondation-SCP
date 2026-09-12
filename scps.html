@@ -2,13 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Fondation SCP - Index des SCPs</title>
+  <title>SCPOS — Base SCP</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="scp-theme">
   <header>
-    <h1>INDEX DES RAPPORTS DE CONFINEMENT D'ANOMALIES</h1>
-    <div id="authStatus"></div>
+    <div class="os-bar">
+      <h1>SCPOS v4.08 — DATABASE SCP</h1>
+      <div id="authStatus"></div>
+    </div>
     <nav>
       <a href="index.html">Accueil</a>
       <a href="scps.html" class="active">Base SCP</a>
@@ -21,44 +23,48 @@
   </header>
 
   <main>
-    <h2>BASE DE DONNÉES CLASSIFIÉE SCP</h2>
+    <h2>INDEX DES OBJETS CONFINÉS</h2>
 
-    <div class="search-box">
-      <input type="text" id="searchSCP" placeholder="Rechercher un SCP (ex: SCP-173, Keter...)" onkeyup="filterSCPs()">
+    <div class="search-box" style="margin-bottom: 25px;">
+      <input type="text" id="searchSCP" placeholder="Filtrer les entités (ex: SCP-173, Keter...)" onkeyup="filterSCPs()">
     </div>
 
     <div class="scp-grid" id="scpGrid">
       <div class="scp-card" data-scp="scp-173 euclid">
         <span class="class-badge euclid">EUCLID</span>
         <h3>SCP-173 — La Sculpture</h3>
-        <p><strong>Procédures de Confinement :</strong> Doit être conservé dans une enceinte verrouillée en permanence. Le contact visuel ne doit jamais être rompu.</p>
+        <p><strong>Procédures :</strong> Enceinte verrouillée en permanence. Le contact visuel ne doit jamais être interrompu.</p>
       </div>
 
       <div class="scp-card" data-scp="scp-096 euclid">
         <span class="class-badge euclid">EUCLID</span>
         <h3>SCP-096 — Le Gars Timide</h3>
-        <p><strong>Procédures de Confinement :</strong> Cellule en acier de 5 m x 5 m. Ne jamais regarder directement ou via une image le visage de l'entité.</p>
-        <p><strong>Rapport d'incident :</strong> <span class="censor">Incident 096-1-A : 100% des cibles ayant vu le visage ont été neutralisées.</span></p>
+        <p><strong>Procédures :</strong> Cellule en acier. Ne jamais observer directement ou en image le visage de l'entité.</p>
+        <p><strong>Incident :</strong> <span class="censor">100% des cibles ayant observé la cible ont été neutralisées.</span></p>
       </div>
 
       <div class="scp-card" data-scp="scp-682 keter">
         <span class="class-badge keter">KETER</span>
         <h3>SCP-682 — Reptile Indestructible</h3>
-        <p><strong>Procédures de Confinement :</strong> Immergé dans une cuve d'acide chlorhydrique à 87%. Doit être détruit dès que possible.</p>
-        <p><strong>Notes O5 :</strong> <span class="censor">Tentatives de destruction par SCP-096 et SCP-173 échouées. Adaptation régénérative totale.</span></p>
+        <p><strong>Procédures :</strong> Immersions répétées dans un bassin d'acide chlorhydrique. Neutralisation prioritaire.</p>
+        <p><strong>Notes O5 :</strong> <span class="censor">Adaptation régénérative extrême aux anomalies concurrentes.</span></p>
       </div>
 
       <div class="scp-card" data-scp="scp-999 safe">
         <span class="class-badge safe">SAFE</span>
         <h3>SCP-999 — Le Monstre aux Chatouilles</h3>
-        <p><strong>Procédures de Confinement :</strong> Accès libre au Site-19. Utilisation autorisée pour le traitement de la dépression du personnel.</p>
+        <p><strong>Procédures :</strong> Déplacements libres autorisés au sein du Site-19.</p>
       </div>
     </div>
   </main>
 
-  <footer>
-    <p>&copy; Fondation SCP — Archives SCP.</p>
-  </footer>
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <span class="start-btn">SCPOS</span>
+      <span>Accès aux archives : Autorisé</span>
+    </div>
+    <div class="taskbar-right" id="clock">12:00</div>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
