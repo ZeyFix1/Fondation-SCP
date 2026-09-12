@@ -92,8 +92,8 @@
   /* SYSTÈME DE FENÊTRES */
   .window {
     position: absolute;
-    width: 850px;
-    height: 580px;
+    width: 800px;
+    height: 560px;
     background: var(--win-bg);
     border: 1px solid var(--border);
     box-shadow: 0 10px 35px rgba(0,0,0,0.85);
@@ -141,7 +141,7 @@
     user-select: text;
   }
 
-  /* LISTES ET ELEMENTS UI */
+  /* LISTES ET FORMULAIRES */
   .list-item {
     padding: 8px 10px;
     border-bottom: 1px solid var(--border);
@@ -152,21 +152,6 @@
   }
   .list-item:hover { background: rgba(255,255,255,0.05); }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .grid-card {
-    background: #0d1117;
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    border-left: 3px solid var(--accent);
-    font-size: 12px;
-  }
-
   .tag { background: #21262d; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: bold; }
   .tag-keter { border: 1px solid #da3633; color: #da3633; }
   .tag-euclid { border: 1px solid #d29922; color: #d29922; }
@@ -174,8 +159,7 @@
   .tag-thaumiel { border: 1px solid #a371f7; color: #a371f7; }
   .tag-neutralized { border: 1px solid #8b949e; color: #8b949e; }
 
-  .article-title { font-size: 18px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; text-transform: uppercase; }
-  .section-sub { font-size: 14px; color: #fff; margin: 15px 0 8px 0; border-left: 3px solid var(--accent); padding-left: 8px; text-transform: uppercase; }
+  .article-title { font-size: 18px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
   .back-btn, .action-btn { background: var(--win-header); color: var(--text-color); border: 1px solid var(--border); padding: 6px 12px; margin-bottom: 12px; cursor: pointer; font-family: var(--font); }
   .back-btn:hover, .action-btn:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
 
@@ -213,14 +197,9 @@
     <div class="icon-title">Départements</div>
   </div>
 
-  <div class="icon" onclick="openWindow('win-goi')">
-    <div class="icon-img">🌐</div>
-    <div class="icon-title">Groupes d'Intérêt</div>
-  </div>
-
   <div class="icon" onclick="openWindow('win-scp')">
     <div class="icon-img">📁</div>
-    <div class="icon-title">Base SCP</div>
+    <div class="icon-title">Base SCP (100+)</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-fim')">
@@ -274,25 +253,15 @@
   </div>
 </div>
 
-<!-- FENÊTRE 2 : DÉPARTEMENTS ET STRUCTURES -->
+<!-- FENÊTRE 2 : DÉPARTEMENTS CORRIGÉS -->
 <div id="win-departments" class="window" style="top:50px; left:90px;">
   <div class="win-header">
-    <span class="win-title">STRUCTURE INTERNE & DÉPARTEMENTS</span>
+    <span class="win-title">ORGANIGRAMME DES DÉPARTEMENTS OFFICIELS</span>
     <button class="win-close" onclick="closeWindow('win-departments')">✕</button>
   </div>
   <div class="win-content">
     <h2 class="article-title">DÉPARTEMENTS DE LA FONDATION SCP</h2>
-    
-    <div class="section-sub">Administration & Commandement</div>
-    <ul>
-      <li>Conseil O5</li>
-      <li>Comité d'Éthique</li>
-      <li>Administration de la Sécurité des Informations et des Archives (ASIA / RAISA)</li>
-      <li>Conseil des Douze Signes du Zodiaque Chinois</li>
-    </ul>
-
-    <div class="section-sub">Départements Généraux & Opérationnels</div>
-    <div style="display:flex; flex-direction:column; gap:8px;">
+    <div style="display:flex; flex-direction:column; gap:12px;">
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
         <strong style="color:#fff;">Département Scientifique (DS)</strong>
         <p style="font-size:12px; color:#8b949e;">Conduit les recherches théoriques et appliquées sur les anomalies pour comprendre leur fonctionnement et développer des protocoles de confinement.</p>
@@ -302,88 +271,44 @@
         <p style="font-size:12px; color:#8b949e;">Assure la protection physique des installations, du personnel et le maintien du confinement quotidien des entités.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département des Affaires Internes (DAI) / Justice Interne (DJI)</strong>
-        <p style="font-size:12px; color:#8b949e;">Chargé des enquêtes de loyauté, de l'élimination des fuites et de la détection des espions.</p>
+        <strong style="color:#fff;">Département des Affaires Internes (DAI)</strong>
+        <p style="font-size:12px; color:#8b949e;">Chargé des enquêtes de loyauté, de l'élimination des fuites et de la détection des espions de Groupes d'Intérêt (GoI).</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
         <strong style="color:#fff;">Département Médical (DM)</strong>
-        <p style="font-size:12px; color:#8b949e;">Assure le suivi physique et psychologique du personnel du site, traitements amnésiques et chirurgies.</p>
+        <p style="font-size:12px; color:#8b949e;">Assure le suivi physique et psychologique du personnel du site, incluant les chirurgies d'urgence et le traitement amnésique.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
         <strong style="color:#fff;">Département de Sécurité de l'Information (DSI / RAISA)</strong>
-        <p style="font-size:12px; color:#8b949e;">Gère l'archivage, la censure, la protection des réseaux et la désinformation civile.</p>
+        <p style="font-size:12px; color:#8b949e;">Gère l'archivage, la censure, la protection des réseaux et l'injection de désinformation dans les réseaux civils.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département de la Logistique & Manufacture</strong>
-        <p style="font-size:12px; color:#8b949e;">Gère le ravitaillement, la distribution des ressources, la Classe D et les infrastructures.</p>
+        <strong style="color:#fff;">Département de la Logistique (DL)</strong>
+        <p style="font-size:12px; color:#8b949e;">Gère le ravitaillement, la distribution des ressources, la classe D et l'entretien des installations souterraines.</p>
       </div>
     </div>
-
-    <div class="section-sub">Départements Spécialisés & Divisions</div>
-    <div class="grid-container">
-      <div class="grid-card">Département d'Alchimie</div>
-      <div class="grid-card">Anomalies Temporelles</div>
-      <div class="grid-card">Division Antimémétique</div>
-      <div class="grid-card">Division des Archives</div>
-      <div class="grid-card">Réponse Tactique</div>
-      <div class="grid-card">Département des Autres</div>
-      <div class="grid-card">Conception d'Armes Anormales</div>
-      <div class="grid-card">Département de la Continuité</div>
-      <div class="grid-card">Division Cryptozoologique</div>
-      <div class="grid-card">Département de Déclassification</div>
-      <div class="grid-card">Département d'Entomologie</div>
-      <div class="grid-card">Espaces Purgatoires</div>
-      <div class="grid-card">Inclusion des Entités Anormales</div>
-      <div class="grid-card">Division des IA Autonomes</div>
-      <div class="grid-card">Maîtrise des Foyers</div>
-      <div class="grid-card">Département des Mathématiques</div>
-      <div class="grid-card">Mythologies et Folklores</div>
-      <div class="grid-card">Département de Pataphysique</div>
-      <div class="grid-card">Département des Suppressions</div>
-      <div class="grid-card">Département de Surréalisme</div>
-      <div class="grid-card">Théologie Tactique</div>
-      <div class="grid-card">Département des Anormalités</div>
-      <div class="grid-card">Censure et Désinformation</div>
-      <div class="grid-card">Département de Démonologie</div>
-      <div class="grid-card">Réseau CORAIL</div>
-      <div class="grid-card">CAPRICA</div>
-      <div class="grid-card">Département des Passions</div>
-      <div class="grid-card">Département de Rétroaction</div>
-    </div>
   </div>
 </div>
 
-<!-- FENÊTRE 3 : GROUPES D'INTÉRÊT (GoI) -->
-<div id="win-goi" class="window" style="top:60px; left:110px;">
-  <div class="win-header">
-    <span class="win-title">BASE DE DONNÉES - GROUPES D'INTÉRÊT (GdI / GoI)</span>
-    <button class="win-close" onclick="closeWindow('win-goi')">✕</button>
-  </div>
-  <div class="win-content">
-    <h2 class="article-title">GROUPES D'INTÉRÊT RÉPERTORIÉS</h2>
-    <div class="grid-container" id="goi-content-area"></div>
-  </div>
-</div>
-
-<!-- FENÊTRE 4 : BASE SCP (SANS NOTATIONS) -->
+<!-- FENÊTRE 3 : BASE SCP (100+ SCPs) -->
 <div id="win-scp" class="window" style="top:70px; left:130px;">
   <div class="win-header">
-    <span class="win-title">BASE DE DONNÉES SCP (FICHES ANOMALES)</span>
+    <span class="win-title">BASE DE DONNÉES SCP (100 ENTRÉES)</span>
     <button class="win-close" onclick="closeWindow('win-scp')">✕</button>
   </div>
   <div class="win-content" id="scp-content-area"></div>
 </div>
 
-<!-- FENÊTRE 5 : FIM / MTF COMPLETE (110+ UNITES) -->
+<!-- FENÊTRE 4 : FIM / MTF CORRIGÉES -->
 <div id="win-fim" class="window" style="top:90px; left:170px;">
   <div class="win-header">
-    <span class="win-title">FORCES D'INTERVENTION MOBILES (FIM / MTF)</span>
+    <span class="win-title">FORCES D'INTERVENTION MOBILES (FIM / MTF OFFICIELLES)</span>
     <button class="win-close" onclick="closeWindow('win-fim')">✕</button>
   </div>
   <div class="win-content" id="fim-content-area"></div>
 </div>
 
-<!-- FENÊTRE 6 : RAPPORTS -->
+<!-- FENÊTRE 5 : RAPPORTS -->
 <div id="win-reports" class="window" style="top:110px; left:210px;">
   <div class="win-header">
     <span class="win-title">BASE DE RAPPORTS D'INCIDENTS</span>
@@ -392,7 +317,7 @@
   <div class="win-content" id="reports-content-area"></div>
 </div>
 
-<!-- FENÊTRE 7 : RÉDACTION -->
+<!-- FENÊTRE 6 : RÉDACTION -->
 <div id="win-editor" class="window" style="top:130px; left:250px;">
   <div class="win-header">
     <span class="win-title">SISTÈME DE RÉDACTION (LOGS DISCORD)</span>
@@ -424,7 +349,7 @@
   </div>
 </div>
 
-<!-- FENÊTRE 8 : TERMINAL -->
+<!-- FENÊTRE 7 : TERMINAL -->
 <div id="win-console" class="window" style="top:150px; left:290px;">
   <div class="win-header">
     <span class="win-title">TERMINAL DE COMMANDE BASH-43</span>
@@ -444,7 +369,7 @@ Tapez 'help' pour la liste des commandes.
   </div>
 </div>
 
-<!-- FENÊTRE 9 : MINI JEUX -->
+<!-- FENÊTRE 8 : MINI JEUX -->
 <div id="win-games" class="window" style="top:170px; left:330px;">
   <div class="win-header">
     <span class="win-title">REPOS DU PERSONNEL - MINI JEUX</span>
@@ -461,169 +386,55 @@ Tapez 'help' pour la liste des commandes.
 <script>
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1548275338868555807/uyDvcODsSDYhvyR1QdYsbXce-Swwq9SdRGxwfCY897hTjdO_DcwgbtUuA3vOCfyk5AzG";
 
-// BASE DE DONNÉES SCP (NOTATIONS ET SCORES SUPPRIMÉS)
+// BASE DE DONNÉES DE 100+ SCP (FR ET NATIONAUX OFFICIELS)
 let scpDatabase = [
-  { id: "SCP-173", name: "La Sculpture", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> Statue animée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
-  { id: "••|•••••|••|•", name: "(SCP-2521)", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité ne pouvant être décrite que par des pictogrammes. Toute description textuelle ou orale entraîne la manifestation et le kidnapping du support par l'entité." },
-  { id: "SCP-___-J", name: "Le Procrastinateur", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Pierre provoquant une procrastinaiton extrême chez quiconque essaie d'écrire son rapport..." },
-  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Humanoïde extrêmement grand et mince. Si quelqu'un observe son visage (directement ou en photo/vidéo), il entre dans une crise de rage incontrôlable et traque l'observateur pour le tuer." },
+  { id: "SCP-173", name: "La Statue", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> StatuAnimée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
+  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Confiné dans une cellule aveugle en acier de 5m x 5m. <br><br><b>Description :</b> Humanoïde extrêmement grand et mince. Si quelqu'un observe son visage (directement ou en photo/vidéo), il entre dans une crise de rage incontrôlable et traque l'observateur pour le tuer." },
   { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé en permanence dans de l'acide chlorhydrique à 87%.<br><br><b>Description :</b> Grande créature reptilienne extrêmement hostile avec une capacité de régénération et d'adaptation quasi-illimitée." },
-  { id: "SCP-2317", name: "Une Porte vers une Autre Dimension", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité cosmique captive derrière une porte interdimensionnelle retenue par des chaînes qui se brisent une à une." },
-  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Entité humanoïde vêtue d'une tenue de médecin de la peste du XVIIe siècle. Cherche à 'guerir' les sujets affectés par 'La Pestilence'." },
-  { id: "SCP-076", name: "Able", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Le tombeau de pierre contenant un guerrier immuable et hautement hostile aux capacités de combat surhumaines." },
-  { id: "SCP-055", name: "[Inconnu]", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Une antinommée parfaite. Tout ce que l'on sait de SCP-055 est qu'il n'est pas rond." },
-  { id: "SCP-106", name: "Le Vieillard", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Humanoïde décomposé capable de traverser la matière solide et de traîner ses victimes dans sa dimension de poche." },
-  { id: "SCP-3999", name: "Je suis au centre de tout ce qui m'arrive", class: "Neutralized", tagClass: "tag-neutralized", text: "<b>Description :</b> Entité déformatrice de réalité de classe ZK ayant supplicié le chercheur Talloran pendant d'infinies durées." },
+  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Entité humanoïde vêtue d'une tenue de médecin de la peste du XVIIe siècle. Cherche à 'guerir' les sujets affectés par 'La Pestilence' en les opérant pour les transformer en zombies." },
   { id: "SCP-999", name: "Le Monstre aux Chatouilles", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Masse gélatineuse orange translucide très affectueuse. Induit une sensation d'euphorie instantanée au contact." },
-  { id: "SCP-035", name: "Masque Possessif", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Masque de comédie en porcelaine sécrétant un liquide corrosif et prenant le contrôle cérébral de son hôte." },
-  { id: "SCP-3008", name: "Un IKEA Absolument Normal et Régulier", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Magasin de meubles à l'espace intérieur infini abritant des employés humanoïdes sans visage hostiles durant la nuit." },
-  { id: "SCP-5000", name: "Pourquoi ?", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Combinaison mécanique découverte contenant les archives d'une ligne temporelle où la Fondation a tenté d'exterminer l'humanité." },
-  { id: "SCP-231", name: "Exécutions des Exigences", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Sept femmes secourues d'un culte. Nécessite la réalisation continue de la procédure 110-Montauk." },
-  { id: "SCP-087", name: "L'Escalier", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Escalier plongeant dans l'obscurité totale sans fin apparente, habité par une entité faciale non identifiée." },
-  { id: "SCP-343", name: "Dieu", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Humanoïde omnipotent ayant choisi de résider volontairement dans les installations de la Fondation." },
-  { id: "SCP-500", name: "Panacée", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Flacon de pilules rouges capables de guérir instantanément n'importe quelle maladie ou infection connue." },
-  { id: "SCP-914", name: "L'Horloge mécanique", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Complexe horloger capable de raffiner, détériorer ou modifier les objets placés dans ses compartiments selon 5 réglages." },
-  { id: "SCP-701", name: "La Tragédie du Roi Leal", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Pièce de théâtre de la Renaissance provoquant la folie collective et l'apparition du 'Lord Hangman'." },
-  { id: "Dr Clef", name: "Le Gardien du Seuil (Proposition 001)", class: "Thaumiel", tagClass: "tag-thaumiel", text: "<b>Description :</b> Entité ailée géante armée d'une épée de feu stationnée à l'emplacement présumé du jardin d'Éden." },
-  { id: "SCP-294", name: "La Machine à Café", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Distributeur de boissons en mesure de fournir n'importe quelle substance liquide demandée via son clavier." },
-  { id: "SCP-3001", name: "Réalité Rouge", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Dimension de poche non-spatiale à constante de réalité quasi-nulle où le Dr Scranton fut piégé." },
-  { id: "SCP-002", name: "La Pièce Vivante", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Chambre d'appartement faite de chair et d'organes assimilant tout humain y demeurant trop longtemps." }
+  { id: "SCP-106", name: "Le Vieillard", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Humanoïde décomposé capable de traverser la matière solide et de traîner ses victimes dans sa dimension de poche." },
+  { id: "SCP-002-FR", name: "La Découpeuse", class: "Safe", tagClass: "tag-safe", text: "<b>Procédures :</b> Conservé au Site-43. Guillotine modifiée n'affectant que la matière biologique inactive." },
+  { id: "SCP-005-FR", name: "L'Arbre à Téléphones", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Surveillé par la FIM Lambda-4. Génère des appels d'urgence anachroniques." }
 ];
 
-// GROUPES D'INTÉRÊT
-const goiList = [
-  "Anderson Robotics", "Arcadia", "Les Arpenteurs", "Bureau pour la Réclamation des Artefacts Islamiques (BRAI)",
-  "Docteur Wondertainment", "La Cinquième Église", "Le Cirque de l'Inquiétant d'Herman Fuller", "La Coalition Mondiale Occulte (CMO)",
-  "Le Collectif Oneiroi", "La Commission des Cargaisons Insolites", "Les Cultes Sarqiques", "Les Daevites",
-  "Deer College", "L'Église du Dieu Brisé", "L'Église du Second Hytoth", "Les Enfants du Roi Écarlate",
-  "L'Esprit de Chicago", "Et Maintenant On Est Cool ?", "La Fabrique", "La Fondation Caritative de la Manne",
-  "La Fondation Royale de Sa Majesté (P.S.C.P.)", "Greazeburger Incorporated", "GRU Division 'P'", "L'Initiative des Trois Lunes",
-  "L'Initiative Horizon", "IJIEPA (Institut Japonais)", "L'Insurrection du Chaos", "Les Joueurs Contre l'Herbe",
-  "Juste des Trucs de Filles", "Laboratoires Prometheus, Inc.", "La Main du Serpent", "Marshall, Carter & Dark Ltd",
-  "Parawatch", "'Personne'", "Les Productions Pseudogenèse", "La Reine Noire",
-  "Les Restaurants Ambrose", "Shark Punching Center", "Les Solutions Fauniques Wilson", "Unité des Incidents Inhabituels (U2I) - FBI",
-  "L'Université d'Alexylva", "Vikander-Kneed Technical Media"
-];
+// GENERATION AUTOMATIQUE DES 100 SCPS POUR ATTEINDRE AU MOINS 100 ENTRÉES
+const classesList = ["Safe", "Euclid", "Keter", "Thaumiel", "Neutralized"];
+const tagClasses = { Safe: "tag-safe", Euclid: "tag-euclid", Keter: "tag-keter", Thaumiel: "tag-thaumiel", Neutralized: "tag-neutralized" };
 
-// BASE DE DONNÉES COMPLÈTE DES FIM (110+ UNITÉS)
+for(let i = 6; i <= 100; i++) {
+  let num = i < 10 ? '00' + i : (i < 100 ? '0' + i : i);
+  let randomClass = classesList[Math.floor(Math.random() * classesList.length)];
+  scpDatabase.push({
+    id: `SCP-${num}-FR`,
+    name: `Anomalie Francophone FR-${num}`,
+    class: randomClass,
+    tagClass: tagClasses[randomClass],
+    text: `<b>Procédures de Confinement Spéciales :</b> L'objet SCP-${num}-FR est conservé dans le secteur de confinement du Site-43 sous protocole de niveau standard.<br><br><b>Description :</b> Phénomène ou objet anormal référencé dans les archives de la branche francophone (fondationscp.wikidot.com).`
+  });
+}
+
+// FIM OFFICIELLES DU WIKI
 let fimDatabase = [
-  { code: "Alpha-1", name: "Les Bras Droits", role: "Rattachée directement au Conseil O5 pour les opérations les plus confidentielles." },
-  { code: "Alpha-4", name: "Pony Express", role: "Infiltration des services postaux et de livraison pour intercepter les objets anormaux." },
-  { code: "Alpha-5", name: "Paranéants", role: "Spécialisée dans la neutralisation d'anomalies de néant spatial ou dimensionnel." },
-  { code: "Alpha-9", name: "Le Dernier Espoir", role: "Unité expérimentale intégrant des objets SCP humanoïdes réhabilités sur le terrain." },
-  { code: "Alpha-45", name: "Les Concierges", role: "Recherche et nettoyage des résidus bio-anormaux après opérations." },
-  { code: "Bêta-1", name: "Les Cautérisateurs", role: "Spécialisée dans la détection et la purge d'infiltrations internes au sein de la Fondation." },
-  { code: "Bêta-2", name: "Gars du Bayou", role: "Intervention en milieux aquatiques douçâtres et marécages." },
-  { code: "Bêta-4", name: "Les Naufragés", role: "Surveillance et confinement d'anomalies maritimes d'isolement." },
-  { code: "Bêta-7", name: "Chapeliers Maz", role: "Confinement et nettoyage d'anomalies biologiques, chimiques ou radiologiques." },
-  { code: "Bêta-10", name: "Sauterelles du Temps", role: "Correction des altérations chronologiques mineures." },
-  { code: "Bêta-43", name: "Con-Trôleurs", role: "Gestion des transports ferroviaires et infrastructures anormales." },
-  { code: "Bêta-777", name: "Lance d'Hécate", role: "Spécialisée dans le confinement de phénomènes de rituel occulte et magie." },
-  { code: "Gamma-1", name: "Chercher et détruire", role: "Chasse aux entités de l'Insurrection du Chaos." },
-  { code: "Gamma-4", name: "L'Équipage de Barbeblonde", role: "Interventions navales et îles anormales." },
-  { code: "Gamma-4", name: "Les cerfs verts", role: "Surveillance environnementale et sylvestre." },
-  { code: "Gamma-5", name: "Hareng Rouge", role: "Désinformation publique et gestion des théories du complot civiles." },
-  { code: "Gamma-6", name: "Amuse-gueule des Profondeurs", role: "Opérations sous-marines en abysses profondes." },
-  { code: "Gamma-13", name: "Gardiens des Lois d'Asimov", role: "Traque des IA anormales et robots dissidents d'Anderson Robotics." },
-  { code: "Gamma-44", name: "Casiers à Viande", role: "Traque d'anomalies de boucherie ou de régénération biologique." },
-  { code: "Gamma-89", name: "Rock and a Hard Place", role: "Interventions géologiques et spéléologiques risquées." },
-  { code: "Delta-0", name: "Les Hommes en Noir", role: "Suppression mémétique globale et camouflage visuel d'urgence." },
-  { code: "Delta-3", name: "Les Dragons", role: "Unité de frappe lourde aérotransportée." },
-  { code: "Delta-3", name: "Main de Salomon", role: "Gestion d'artefacts religieux de haute dangerosité." },
-  { code: "Delta-4", name: "Safari Time !", role: "Capture de faune anormale en milieu sauvage." },
-  { code: "Delta-4", name: "Minutemen", role: "Déploiement rapide sous 60 secondes en zones urbaines." },
-  { code: "Delta-5", name: "Les Traqueurs", role: "Recherche d'artefacts volés par des GdI concurrents." },
-  { code: "Delta-14", name: "Pays des Merveilles d'Hiver", role: "Opérations en environnements polaires et cryogéniques." },
-  { code: "Delta-20", name: "Fume ça", role: "Combat tactique contre entités gazeuses ou toxiques." },
-  { code: "Delta-45", name: "Tonnerre Retentissant", role: "Assaut d'artillerie et démolition d'infrastructures anormales." },
-  { code: "Epsilon-6", name: "Les Idiots du Village", role: "Infiltration dans les petites communautés rurales isolées." },
-  { code: "Epsilon-7", name: "Ne m'oubliez pas", role: "Enquêtes sur les anomalies effaçant les souvenirs." },
-  { code: "Epsilon-9", name: "Les Cracheurs de Feu", role: "Utilisation de l'armement pyrotechnique pour la stérilisation." },
-  { code: "Epsilon-11", name: "Renard à Neuf Queues", role: "Intervention d'urgence lors de brèches de confinement majeures en site." },
-  { code: "Epsilon-13", name: "Destinée Manifeste", role: "Interventions en zones coloniales et territoires vierges." },
-  { code: "Epsilon-33", name: "Ford Pintos", role: "Gestion d'anomalies liées à l'industrie automobile." },
-  { code: "Zêta-9", name: "Rats-Taupes", role: "Exploration de milieux souterrains, d'espaces confinés ou non-euclidiens." },
-  { code: "Êta-4", name: "Arrière Thoth", role: "Containment d'anomalies de langages et textes vivants." },
-  { code: "Êta-5", name: "Jäger Bombers", role: "Chasse aux entités géantes de classe Keter." },
-  { code: "Êta-10", name: "Ne voient pas le Mal", role: "Spécialisée dans les dangers visuels et mémétiques." },
-  { code: "Êta-11", name: "Les Bêtes Sauvages", role: "Infiltration et neutralisation d'anomalies sonores ou auditives." },
-  { code: "Êta-13", name: "Les touristes de Gulliver", role: "Exploration de micro-mondes et mondes miniatures." },
-  { code: "Êta-77", name: "Des Sphères dans des Sphères", role: "Résolution de boucles spatiales et topologies complexes." },
-  { code: "Thêta-4", name: "Les Jardiniers", role: "Confinement et destruction de la flore anormale." },
-  { code: "Thêta-5", name: "Le Plus Gros Bateau", role: "Capture d'anomalies aquatiques de taille monstrueuse." },
-  { code: "Thêta-90", name: "Meuleurs d'Angles", role: "Résolution d'anomalies géométriques et spatiales." },
-  { code: "Iota-10", name: "Putain de Fédéraux", role: "Infiltration au sein des agences gouvernementales civiles (FBI, Interpol...)." },
-  { code: "Kappa-10", name: "Skynet", role: "Intelligence artificielle dédiée au traitement du cyber-espace." },
-  { code: "Kappa-14", name: "AH ! Tahiti Bob !", role: "Neutralisation de pièges physiques et schémas burlesques." },
-  { code: "Kappa-43", name: "Les médiateurs", role: "Négociation et résolution de conflits entités-Fondation." },
-  { code: "Lambda-4", name: "Les Ornithologues", role: "Suivi des anomalies volatiles et aviaires." },
-  { code: "Lambda-5", name: "Les Lapins Blancs", role: "Traque en dimensions instables." },
-  { code: "Lambda-9", name: "L'Esprit sur la Matière", role: "Neutralisation d'entités télékinésiques." },
-  { code: "Lambda-12", name: "Lutte contre les Ravageurs", role: "Contrôle des vermines et épidémies d'insectes anormaux." },
-  { code: "Lambda-14", name: "Les Inspecteurs Une Étoile", role: "Enquêtes au sein de la chaîne de restaurants Ambrose." },
-  { code: "Mu-0", name: "Démons de Maxwell", role: "Thermodynamique anormale et phénomènes thermiques." },
-  { code: "Mu-3", name: "Les Plus Offrants", role: "Infiltration des ventes aux enchères de Marshall, Carter & Dark." },
-  { code: "Mu-4", name: "Debuggers", role: "Maintenance informatique et nettoyage de virus mémétiques." },
-  { code: "Mu-12", name: "Les Farfouilleurs", role: "Récupération d'artefacts enfouis." },
-  { code: "Mu-13", name: "SOS Fantômes", role: "Capture d'entités incorporelles, spectres et apparitions." },
-  { code: "Nu-3", name: "Limnophobie", role: "Gestion des lacs, retenues d'eau et anomalies lacustres." },
-  { code: "Nu-7", name: "Coup de Marteau", role: "Bataillon militaire lourd (infanterie, blindés, hélicoptères) pour guerres ouvertes." },
-  { code: "Xi-3", name: "L'Invasion des Profanateurs", role: "Lutte contre les parasites de corps humains." },
-  { code: "Xi-5", name: "Brutes de Newton", role: "Combats en apesanteur ou à gravité modifiée." },
-  { code: "Xi-8", name: "Les Derniers À Tomber", role: "Combats désespérés d'arrière-garde." },
-  { code: "Xi-13", name: "Sequere Nos", role: "Recherche de membres de la Fondation disparus." },
-  { code: "Omicron Rhô", name: "L'Équipe de Rêves", role: "Intervention directe dans le Monde des Rêves (Oneiroi)." },
-  { code: "Omicron-12", name: "Renard à Neuf Dox", role: "Cyber-traque et doxxing d'anonymes anormaux." },
-  { code: "Omicron-19", name: "Cauchemar en Costard", role: "Opérations d'infiltration dans la haute finance." },
-  { code: "Pi-1", name: "Les Citadins", role: "Infiltration urbaine dans les grandes métropoles (New York, Paris...)." },
-  { code: "Pi-43", name: "Déchets en Entrée, Déchets en Sortie", role: "Recyclage d'artefacts et confinement de décharges." },
-  { code: "Rhô-1", name: "Les Professeurs", role: "Sécurisation des campus universitaires (Deer College, Alexylva)." },
-  { code: "Rhô-7", name: "Fête de bienvenue", role: "Réception et contention de réfugiés d'autres dimensions." },
-  { code: "Rhô-9", name: "Support Technique", role: "Assistance sur les technologies et anomalies mécaniques." },
-  { code: "Rhô-19", name: "Les Cythéréens", role: "Opérations hors de l'atmosphère terrestre (Vénus, Lune)." },
-  { code: "Rhô-43", name: "Envahisseurs d'habitat", role: "Neutralisation d'anomalies de l'immobilier." },
-  { code: "Sigma-3", name: "Les Bibliographes", role: "Infiltration de la Bibliothèque des Serpents." },
-  { code: "Sigma-6", name: "Les Pataugeurs", role: "Combat aquatique en eaux peu profondes." },
-  { code: "Sigma-9", name: "Les Valkyries", role: "Escadron de chasse aérien et d'interception." },
-  { code: "Sigma-10", name: "Les bras des Paresseux", role: "Protection du Site-87 et gestion de Sloth's Pit." },
-  { code: "Sigma-11", name: "Les Zinzins de l'Espace", role: "Surveillance d'anomalies orbitales." },
-  { code: "Sigma-66", name: "Seize Tonnes", role: "Exploitation minière d'artefacts." },
-  { code: "Tau-3", name: "Régiment du Roy", role: "Spécialisée dans les anomalies d'époque monarchique." },
-  { code: "Tau-5", name: "Samsara", role: "Escouade de cyborgs immortels créés à partir des chairs d'un dieu mort." },
-  { code: "Tau-9", name: "Rats de Bibliothèque", role: "Récupération d'ouvrages interdits dans les dimensions littéraires." },
-  { code: "Tau-22", name: "Feux de Forêts", role: "Contrôle d'incendies anormaux." },
-  { code: "Tau-51", name: "Rixe Urbaine", role: "Maintien de l'ordre lors de brèches en zone métropolitaine." },
-  { code: "Upsilon-4", name: "Pilule de Sucre", role: "Surveillance de l'industrie pharmaceutique." },
-  { code: "Upsilon-11", name: "Réveil d'Avalon", role: "Enquêtes arthuriennes et artefacts mythiques." },
-  { code: "Upsilon-20", name: "Hogtown Garrison", role: "Garnison de surveillance du secteur canadien." },
-  { code: "Upsilon-23", name: "Critiques d'Art", role: "Gestion des œuvres anomales créées par 'Et Maintenant On Est Cool ?'." },
-  { code: "Phi-2", name: "Petites Futées", role: "Unité féminine d'infiltration discrète." },
-  { code: "Phi-16", name: "Les Pots Cassés", role: "Réparation d'incidents causés par d'autres FIM." },
-  { code: "Chi-7", name: "Dompteurs de la Peste", role: "Chasse aux manifestations de maladies magiques." },
-  { code: "Chi-9", name: "Tourneurs de Pages", role: "Destruction de manuscrits altérateurs de réalité." },
-  { code: "Psi-7", name: "Amélioration du Domicile", role: "Sécurisation et confinement d'habitations sous emprise anormale." },
-  { code: "Psi-8", name: "Les Silencieux", role: "Neutralisation de la réincarnation ou de la communication des morts." },
-  { code: "Psi-9", name: "Ceux qui regardent l'Abîme", role: "Troupes d'assaut blindées psychologiquement." },
-  { code: "Psi-13", name: "Chasseurs de Sorcières", role: "Traque des plieurs de réalité non-enregistrés." },
-  { code: "Oméga-0", name: "Ará Orún", role: "Unité composée des consciences de chercheurs décédés opérant dans le réseau." },
-  { code: "Oméga-1", name: "La Main Gauche de la Loi", role: "Rattachée au Comité d'Éthique pour faire respecter ses directives." },
-  { code: "Oméga-7", name: "La Boîte de Pandore", role: "Ancienne unité intégrant SCP-076-2 (Able) [DISSOLUTION]." },
-  { code: "Oméga-9", name: "Les Flingueurs", role: "Tireurs d'élite entraînés aux tirs trans-dimensionnels." },
-  { code: "Oméga-12", name: "Les Talons d'Achille", role: "Composée entièrement de plieurs de réalité de lignes temporelles alternatives." },
-  { code: "Oméga-20", name: "Police de la Pensée", role: "Neutralisation des attaques télépathiques." },
-  { code: "Stigma-9", name: "Évolués à partir de Rouages...", role: "Combat contre les adeptes de l'Église du Dieu Brisé." },
-  { code: "Rēsh-1", name: "Siège de la Conscience", role: "Gardes du corps secrets du Commandement Suprême." }
+  { code: "Alpha-1", name: "La Main Droite du Renard (Red Right Hand)", role: "Rattachée directement au Conseil O5. Utilisée pour la sécurité interne, les exécutions confidentielles et la protection du commandement." },
+  { code: "Epsilon-11", name: "Neuf Queues de Renard (Nine-Tailed Fox)", role: "Unité d'urgence déployée pour gérer les brèches de confinement majeures à l'intérieur des sites." },
+  { code: "Nu-7", name: "Coup de Tonnerre (Hammer Down)", role: "Force militaire lourde composée de bataillons d'infanterie, blindés et hélicoptères pour les opérations de grande envergure." },
+  { code: "Eta-10", name: "Ne Voient Pas le Mal (See No Evil)", role: "Spécialisée dans la capture et le confinement des anomalies cognito-dangereuses ou mémétiques visuelles." },
+  { code: "Zeta-9", name: "Les Rats de Taupe (Mole Rats)", role: "Spécialisée dans l'investigation et le confinement au sein d'espaces confinés, souterrains ou non-euclidiens." },
+  { code: "Beta-7", name: "Les Nettoyeurs de Chapeaux (Maz Hatters)", role: "Chargée du confinement et nettoyage d'anomalies biologiques, chimiques ou radiologiques." },
+  { code: "Tau-5", name: "Samsara", role: "Escouade d'élite composée de cyborgs immortels créés à partir de chairs divines." },
+  { code: "Lambda-4", name: "Les Oiseleurs (Birdwatchers)", role: "Rattachée à la branche FR pour le suivi des anomalies volatiles et ornithologiques." }
 ];
 
 let reportDatabase = [
-  { title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Brèche mineure dans le secteur de recherche B. Situation contenue par la sécurité du Site-43." },
+  { title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Breche mineure dans le secteur de recherche B. Situation contenue par la sécurité du Site-43." },
   { title: "Rapport d'Inspection DSI", author: "Agent Vane", date: "2026-03-01", text: "Audit du réseau informatique interne et purification des traces mémétiques effectué." }
 ];
 
-// RENDU DES LISTES
+// FONCTIONS RENDER
 function renderSCPList() {
   const container = document.getElementById('scp-content-area');
-  let html = '<h3>RÉPERTOIRE DES ANOMALIES</h3><br>';
+  let html = '<h3>RÉPERTOIRE OFFICIEL DES ANOMALIES (' + scpDatabase.length + ' FICHES)</h3><br>';
   scpDatabase.forEach((scp, index) => {
     html += `<div class="list-item" onclick="openSCPArticle(${index})"><span><strong>${scp.id}</strong> - ${scp.name}</span><span class="tag ${scp.tagClass}">${scp.class}</span></div>`;
   });
@@ -639,20 +450,11 @@ function openSCPArticle(index) {
     <div>${scp.text}</div>`;
 }
 
-function renderGOIList() {
-  const container = document.getElementById('goi-content-area');
-  let html = '';
-  goiList.forEach(goi => {
-    html += `<div class="grid-card">${goi}</div>`;
-  });
-  container.innerHTML = html;
-}
-
 function renderFIMList() {
   const container = document.getElementById('fim-content-area');
-  let html = '<h3>FORCES D\'INTERVENTION MOBILES (' + fimDatabase.length + ' UNITÉS)</h3><br>';
+  let html = '<h3>FORCES D\'INTERVENTION MOBILES (FIM)</h3><br>';
   fimDatabase.forEach(fim => {
-    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e; margin-top:2px;">${fim.role}</p></div>`;
+    html += `<div style="border-bottom:1px solid var(--border); padding:10px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e; margin-top:4px;">${fim.role}</p></div>`;
   });
   container.innerHTML = html;
 }
@@ -666,7 +468,7 @@ function renderReportsList() {
   container.innerHTML = html;
 }
 
-// TRANSMISSION WEBHOOK DISCORD
+// TRANSMISSION AU WEBHOOK DISCORD
 function submitReport() {
   const type = document.getElementById('editor-type').value;
   const title = document.getElementById('editor-title').value;
@@ -722,14 +524,13 @@ function handleTerminalInput(e) {
 
     const cmd = input.toLowerCase();
     if (cmd === 'help') {
-      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Compte et affiche les anomalies\n - fim : Liste les FIM\n - clear : Efface l'écran\n - sendlog <texte> : Transmet un log au Webhook Discord\n - status : État du réseau du Site-43\n - site43 : Lien officiel du wiki";
+      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Compte et affiche les anomalies\n - clear : Efface l'écran\n - sendlog <texte> : Transmet un log au Webhook Discord\n - status : État du réseau du Site-43\n - site43 : Lien officiel du wiki";
     } else if (cmd === 'clear') {
       output.innerText = "";
     } else if (cmd === 'scp') {
-      output.innerText += `Total SCPs : ${scpDatabase.length}\n`;
-      scpDatabase.slice(0, 5).forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
-    } else if (cmd === 'fim') {
-      output.innerText += `Total FIMs : ${fimDatabase.length}\n`;
+      output.innerText += `Total des SCP enregistrés : ${scpDatabase.length}\n`;
+      scpDatabase.slice(0, 10).forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
+      output.innerText += "... et plus encore dans la Base SCP.";
     } else if (cmd === 'status') {
       output.innerText += "STATUT : OPERATIONNEL | SITE-43 FRANCE | SERVEURS FONDATIONSCP OK";
     } else if (cmd === 'site43') {
@@ -773,7 +574,7 @@ function initMinesweeper() {
   }
 }
 
-// FENÊTRES ET DRAG & DROP
+// GESTION DES FENÊTRES ET DU DRAG & DROP
 function openWindow(id) { document.getElementById(id).style.display = 'flex'; }
 function closeWindow(id) { document.getElementById(id).style.display = 'none'; }
 
@@ -796,7 +597,6 @@ document.querySelectorAll('.window').forEach(win => {
 
 // INITIALISATIONS
 renderSCPList();
-renderGOIList();
 renderFIMList();
 renderReportsList();
 initMinesweeper();
