@@ -2,23 +2,30 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Fondation SCP - Archives des Rapports</title>
+  <title>SCPOS — Archives des Rapports</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="scp-theme">
   <header>
-    <h1>ARCHIVES TERMINAL DE LA FONDATION</h1>
-    <!-- Zone de connexion Admin pour Zeyfix -->
-    <div id="authStatus">
-      <button onclick="loginAsZeyfix()">Connexion Administration (Zeyfix)</button>
+    <div class="os-bar">
+      <h1>SCPOS v4.08 — ARCHIVES RAPPORTS</h1>
+      <div id="authStatus"></div>
     </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="scps.html">Base SCP</a>
+      <a href="departements.html">Départements</a>
+      <a href="mtf.html">FIM / MTF</a>
+      <a href="rapport.html" class="active">Base Rapports</a>
+      <a href="redaction.html">Rédaction</a>
+      <a href="console.html">>_ TERMINAL</a>
+    </nav>
   </header>
 
   <main>
-    <h2>BASE DE DONNÉES EN LIGNE</h2>
+    <h2>ARCHIVES SYSTEME</h2>
     
-    <!-- Filtres par catégorie -->
-    <div class="filters">
+    <div class="filters" style="margin-bottom:20px;">
       <button onclick="filterReports('All')">Tous</button>
       <button onclick="filterReports('Scientifique')">Scientifique</button>
       <button onclick="filterReports('Securite')">Sécurité</button>
@@ -26,11 +33,16 @@
       <button onclick="filterReports('FIM')">FIM</button>
     </div>
 
-    <!-- Liste dynamique des rapports -->
-    <div id="reportsContainer">
-      <!-- Les rapports envoyés apparaîtront ici via JS -->
-    </div>
+    <div id="reportsContainer"></div>
   </main>
+
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <span class="start-btn">SCPOS</span>
+      <span>Accès aux journaux : Fichiers chiffrés</span>
+    </div>
+    <div class="taskbar-right" id="clock">12:00</div>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
