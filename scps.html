@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fondation SCP - Index des SCPs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="scp-theme">
+  <header>
+    <h1>INDEX DES RAPPORTS DE CONFINEMENT D'ANOMALIES</h1>
+    <div id="authStatus"></div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="scps.html" class="active">Base SCP</a>
+      <a href="departements.html">Départements</a>
+      <a href="mtf.html">FIM / MTF</a>
+      <a href="rapport.html">Base Rapports</a>
+      <a href="redaction.html">Rédaction</a>
+      <a href="console.html">>_ TERMINAL</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>BASE DE DONNÉES CLASSIFIÉE SCP</h2>
+
+    <div class="search-box">
+      <input type="text" id="searchSCP" placeholder="Rechercher un SCP (ex: SCP-173, Keter...)" onkeyup="filterSCPs()">
+    </div>
+
+    <div class="scp-grid" id="scpGrid">
+      <div class="scp-card" data-scp="scp-173 euclid">
+        <span class="class-badge euclid">EUCLID</span>
+        <h3>SCP-173 — La Sculpture</h3>
+        <p><strong>Procédures de Confinement :</strong> Doit être conservé dans une enceinte verrouillée en permanence. Le contact visuel ne doit jamais être rompu.</p>
+      </div>
+
+      <div class="scp-card" data-scp="scp-096 euclid">
+        <span class="class-badge euclid">EUCLID</span>
+        <h3>SCP-096 — Le Gars Timide</h3>
+        <p><strong>Procédures de Confinement :</strong> Cellule en acier de 5 m x 5 m. Ne jamais regarder directement ou via une image le visage de l'entité.</p>
+        <p><strong>Rapport d'incident :</strong> <span class="censor">Incident 096-1-A : 100% des cibles ayant vu le visage ont été neutralisées.</span></p>
+      </div>
+
+      <div class="scp-card" data-scp="scp-682 keter">
+        <span class="class-badge keter">KETER</span>
+        <h3>SCP-682 — Reptile Indestructible</h3>
+        <p><strong>Procédures de Confinement :</strong> Immergé dans une cuve d'acide chlorhydrique à 87%. Doit être détruit dès que possible.</p>
+        <p><strong>Notes O5 :</strong> <span class="censor">Tentatives de destruction par SCP-096 et SCP-173 échouées. Adaptation régénérative totale.</span></p>
+      </div>
+
+      <div class="scp-card" data-scp="scp-999 safe">
+        <span class="class-badge safe">SAFE</span>
+        <h3>SCP-999 — Le Monstre aux Chatouilles</h3>
+        <p><strong>Procédures de Confinement :</strong> Accès libre au Site-19. Utilisation autorisée pour le traitement de la dépression du personnel.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Fondation SCP — Archives SCP.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
