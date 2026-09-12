@@ -12,21 +12,25 @@
     --text-color: #c9d1d9;
     --accent: #da3633;
     --border: #30363d;
-    --font: 'Courier New', Courier, monospace;
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  
   body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font);
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    position: relative;
     background-image: radial-gradient(#1f242c 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-size: 24px 24px;
   }
 
-  /* BUREAU ET ICÔNES */
+  /* BUREAU ET ICÔNES DE STYLE SYSTEME D'EXPLOITATION */
   #desktop {
     width: 100vw;
     height: calc(100vh - 40px);
@@ -46,67 +50,103 @@
     align-items: center;
     justify-content: center;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     text-align: center;
     color: var(--text-color);
-    transition: background 0.2s, border 0.2s;
+    transition: all 0.15s ease-in-out;
+    padding: 6px;
   }
 
   .icon:hover {
-    background-color: rgba(218, 54, 51, 0.15);
-    border-color: var(--accent);
+    background-color: rgba(218, 54, 51, 0.2);
+    border-color: rgba(218, 54, 51, 0.5);
+    backdrop-filter: blur(4px);
   }
 
-  .icon-img { font-size: 32px; margin-bottom: 4px; }
-  .icon-title { font-size: 10px; font-weight: bold; text-transform: uppercase; }
+  .icon-img { font-size: 32px; margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+  .icon-title { font-size: 11px; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-  /* BARRE DES TÂCHES */
+  /* BARRE DES TÂCHES TYPE OS */
   #taskbar {
     height: 40px;
-    background: #010409;
+    background: rgba(1, 4, 9, 0.95);
     border-top: 1px solid var(--border);
+    backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
-    position: absolute;
+    padding: 0 10px;
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    z-index: 9999;
+    left: 0;
+    width: 100vw;
+    z-index: 99999;
   }
 
   .start-btn {
     background: var(--accent);
     color: #fff;
     border: none;
-    padding: 6px 14px;
+    padding: 6px 16px;
+    border-radius: 4px;
     font-family: var(--font);
     font-weight: bold;
+    font-size: 12px;
     cursor: pointer;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(218, 54, 51, 0.4);
+  }
+  .start-btn:hover { background: #b92b27; }
+
+  .taskbar-items {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+    margin: 0 15px;
   }
 
-  .system-status { font-size: 11px; color: #8b949e; }
+  .taskbar-tab {
+    background: var(--win-header);
+    border: 1px solid var(--border);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .taskbar-tab.active {
+    border-color: var(--accent);
+    background: rgba(218, 54, 51, 0.15);
+  }
 
-  /* SYSTÈME DE FENÊTRES */
+  .system-status { font-size: 11px; color: #8b949e; font-family: var(--font-mono); }
+
+  /* FENÊTRES FLOTTANTES INTRACTIVES */
   .window {
     position: absolute;
-    width: 780px;
-    height: 540px;
+    width: 850px;
+    height: 580px;
     background: var(--win-bg);
     border: 1px solid var(--border);
-    box-shadow: 0 10px 35px rgba(0,0,0,0.85);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.85);
     display: none;
     flex-direction: column;
-    z-index: 10;
-    border-radius: 4px;
+    z-index: 100;
+    border-radius: 8px;
     overflow: hidden;
   }
 
   .win-header {
     background: var(--win-header);
-    padding: 8px 12px;
+    padding: 10px 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,80 +160,129 @@
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .win-close {
+  .win-controls { display: flex; gap: 8px; }
+  .win-btn {
     background: transparent;
     border: none;
     color: #8b949e;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .win-close:hover { color: var(--accent); }
+  .win-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .win-close:hover { background: var(--accent); color: #fff; }
 
   .win-content {
     flex: 1;
-    padding: 16px;
+    padding: 20px;
     overflow-y: auto;
     font-size: 13px;
     line-height: 1.6;
     user-select: text;
   }
 
-  /* LISTES ET FORMULAIRES */
+  /* STYLES INTERNES DOCUMENTS */
   .list-item {
-    padding: 10px;
-    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background: #0d1117;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background 0.2s;
   }
-  .list-item:hover { background: rgba(255,255,255,0.05); }
+  .list-item:hover { background: rgba(218, 54, 51, 0.1); border-color: var(--accent); }
 
-  .tag { background: #21262d; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .grid-card {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .tag { background: #21262d; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; }
   .tag-keter { border: 1px solid #da3633; color: #da3633; }
   .tag-euclid { border: 1px solid #d29922; color: #d29922; }
   .tag-safe { border: 1px solid #3fb950; color: #3fb950; }
   .tag-thaumiel { border: 1px solid #a371f7; color: #a371f7; }
+  .tag-neutralized { border: 1px solid #8b949e; color: #8b949e; }
 
-  .article-title { font-size: 18px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-  .back-btn, .action-btn { background: var(--win-header); color: var(--text-color); border: 1px solid var(--border); padding: 6px 12px; margin-bottom: 12px; cursor: pointer; font-family: var(--font); }
+  .article-title { font-size: 20px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; text-transform: uppercase; font-family: var(--font-mono); }
+  .section-sub { font-size: 14px; color: #fff; margin: 15px 0 8px 0; border-left: 3px solid var(--accent); padding-left: 8px; text-transform: uppercase; font-family: var(--font-mono); }
+  
+  .back-btn, .action-btn { 
+    background: var(--win-header); 
+    color: var(--text-color); 
+    border: 1px solid var(--border); 
+    padding: 8px 16px; 
+    border-radius: 4px;
+    margin-bottom: 14px; 
+    cursor: pointer; 
+    font-family: var(--font);
+    font-weight: 600;
+  }
   .back-btn:hover, .action-btn:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
 
-  .form-group { margin-bottom: 12px; }
-  .form-group label { display: block; margin-bottom: 4px; font-weight: bold; font-size: 11px; text-transform: uppercase; color: #8b949e; }
-  .form-control { width: 100%; background: #0d1117; border: 1px solid var(--border); color: var(--text-color); padding: 8px; font-family: var(--font); }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 11px; text-transform: uppercase; color: #8b949e; }
+  .form-control { width: 100%; background: #0d1117; border: 1px solid var(--border); color: var(--text-color); padding: 10px; border-radius: 4px; font-family: var(--font-mono); }
   .form-control:focus { border-color: var(--accent); outline: none; }
-  textarea.form-control { resize: vertical; min-height: 80px; }
+  textarea.form-control { resize: vertical; min-height: 100px; }
 
   /* TERMINAL CONSOLE INTERACTIF */
-  .terminal-area { background: #000; color: #00ff66; font-family: monospace; height: 100%; display: flex; flex-direction: column; padding: 10px; }
-  #terminal-output { flex: 1; overflow-y: auto; margin-bottom: 10px; white-space: pre-wrap; font-size: 12px; }
+  .terminal-area { background: #000; color: #00ff66; font-family: var(--font-mono); height: 100%; display: flex; flex-direction: column; padding: 14px; }
+  #terminal-output { flex: 1; overflow-y: auto; margin-bottom: 10px; white-space: pre-wrap; font-size: 13px; line-height: 1.4; }
   .terminal-input-line { display: flex; align-items: center; }
   .terminal-prompt { color: #00ff66; margin-right: 8px; font-weight: bold; }
-  #terminal-input { background: transparent; border: none; color: #00ff66; font-family: monospace; width: 100%; font-size: 12px; }
+  #terminal-input { background: transparent; border: none; color: #00ff66; font-family: var(--font-mono); width: 100%; font-size: 13px; }
   #terminal-input:focus { outline: none; }
 
-  /* MINI JEU : DEMINEUR */
-  #minesweeper-grid { display: grid; grid-template-columns: repeat(8, 30px); gap: 2px; margin-top: 10px; }
-  .cell { width: 30px; height: 30px; background: #21262d; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
+  /* MINI JEU */
+  #minesweeper-grid { display: grid; grid-template-columns: repeat(8, 36px); gap: 4px; margin-top: 15px; }
+  .cell { width: 36px; height: 36px; background: #21262d; border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
   .cell.revealed { background: #0d1117; }
 </style>
 </head>
 <body>
 
-<!-- BUREAU INTERACTIF -->
+<!-- BUREAU INTERACTIF DESKTOP OS -->
 <div id="desktop">
   <div class="icon" onclick="openWindow('win-site43')">
     <div class="icon-img">🏢</div>
-    <div class="icon-title">Site-43</div>
+    <div class="icon-title">Site-43 (FR)</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-departments')">
     <div class="icon-img">🏛️</div>
     <div class="icon-title">Départements</div>
+  </div>
+
+  <div class="icon" onclick="openWindow('win-goi')">
+    <div class="icon-img">🌐</div>
+    <div class="icon-title">Groupes d'Intérêt</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-scp')">
@@ -208,7 +297,7 @@
 
   <div class="icon" onclick="openWindow('win-reports')">
     <div class="icon-img">📋</div>
-    <div class="icon-title">Base Rapports</div>
+    <div class="icon-title">Rapports</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-editor')">
@@ -229,88 +318,167 @@
 
 <!-- BARRE DES TÂCHES -->
 <div id="taskbar">
-  <button class="start-btn">FONDATION OS</button>
-  <div class="system-status">SÉCURITÉ : NIVEAU 4 | SITE-43 (FRANCE) | FONDATION SCP</div>
+  <button class="start-btn">⚠️ FONDATION OS</button>
+  <div class="taskbar-items" id="taskbar-items"></div>
+  <div class="system-status">SÉCURITÉ : NIVEAU 4 | SITE-43 FRANCE | FONDATION SCP</div>
 </div>
 
 <!-- FENÊTRE 1 : SITE-43 -->
-<div id="win-site43" class="window" style="top:30px; left:50px;">
+<div id="win-site43" class="window" style="top:40px; left:60px;">
   <div class="win-header">
-    <span class="win-title">DOSSIER INFOS - SITE-43 (FRANCE)</span>
-    <button class="win-close" onclick="closeWindow('win-site43')">✕</button>
+    <span class="win-title">🏢 DOSSIER INFOS - SITE-43 (FRANCE)</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-site43')">✕</button>
+    </div>
   </div>
   <div class="win-content">
-    <h2 class="article-title">SITE-43 : INSTALLATION CLANDESTINE MÉTROPOLITAINE</h2>
-    <p><strong>Emplacement :</strong> France Métropolitaine (Secteur Anomale Alpin / Souterrain).</p>
-    <p><strong>Site Officiel :</strong> <a href="https://site43.miraheze.org/wiki/Accueil" target="_blank" style="color:var(--accent);">site43.miraheze.org</a></p><br>
-    <p><strong>Présentation :</strong> Le Site-43 est une installation stratégique majeure du secteur européen. Il rassemble des dizaines de divisions spécialisées chargées du confinement, du renseignement tactique et de la recherche bio-mémétique sur le territoire français.</p>
+    <h2 class="article-title">SITE-43 : INSTALLATION OFFICIELLE FRANÇAISE</h2>
+    <p><strong>Localisation :</strong> France Métropolitaine (Secteur Anomale Sécurisé).</p>
+    <p><strong>Wiki Officiel :</strong> <a href="https://site43.miraheze.org/wiki/Accueil" target="_blank" style="color:var(--accent);">site43.miraheze.org</a></p>
+    <p><strong>Base Principale :</strong> <a href="http://fondationscp.wikidot.com" target="_blank" style="color:var(--accent);">fondationscp.wikidot.com</a></p>
+    <br>
+    <p><strong>Présentation du Site-43 :</strong> Le Site-43 est une installation majeure de la branche francophone de la Fondation SCP. Il regroupe des divisions spécialisées de confinement, de recherche parasciences et d'intervention tactique sur le territoire français.</p>
     <br>
     <p><strong>Directeur du Site :</strong> Commandement du Secteur FR-43</p>
-    <p><strong>Niveau de Sécurité Global :</strong> Niveau 4 (Accès restreint)</p>
+    <p><strong>Niveau de Sécurité :</strong> Rétention renforcée - Accès Niveau 4 requis.</p>
   </div>
 </div>
 
-<!-- FENÊTRE 2 : DÉPARTEMENTS -->
-<div id="win-departments" class="window" style="top:50px; left:90px;">
+<!-- FENÊTRE 2 : DÉPARTEMENTS ET STRUCTURES -->
+<div id="win-departments" class="window" style="top:60px; left:100px;">
   <div class="win-header">
-    <span class="win-title">STRUCTURE DES DÉPARTEMENTS</span>
-    <button class="win-close" onclick="closeWindow('win-departments')">✕</button>
+    <span class="win-title">🏛️ STRUCTURE INTERNE & DÉPARTEMENTS</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-departments')">✕</button>
+    </div>
   </div>
   <div class="win-content">
-    <h2 class="article-title">DÉPARTEMENTS DE LA FONDATION (SITE-43)</h2>
-    <div style="display:flex; flex-direction:column; gap:12px;">
+    <h2 class="article-title">DÉPARTEMENTS DE LA FONDATION SCP</h2>
+    
+    <div class="section-sub">Administration & Commandement</div>
+    <ul>
+      <li>Conseil O5</li>
+      <li>Comité d'Éthique</li>
+      <li>Administration de la Sécurité des Informations et des Archives (ASIA / RAISA)</li>
+      <li>Conseil des Douze Signes du Zodiaque Chinois</li>
+    </ul>
+
+    <div class="section-sub">Départements Généraux & Opérationnels</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Scientifique</strong>
-        <p style="font-size:12px; color:#8b949e;">Chargé d'étudier le fonctionnement biologique, physique et métaphysique des anomalies.</p>
+        <strong style="color:#fff;">Département Scientifique (DS)</strong>
+        <p style="font-size:12px; color:#8b949e;">Conduit les recherches théoriques et appliquées sur les anomalies pour comprendre leur fonctionnement et développer des protocoles de confinement.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Sécurité & Confinement</strong>
-        <p style="font-size:12px; color:#8b949e;">Maintient le confinement physique des objets dangereux et protège les installations.</p>
+        <strong style="color:#fff;">Département de la Sécurité (DSE)</strong>
+        <p style="font-size:12px; color:#8b949e;">Assure la protection physique des installations, du personnel et le maintien du confinement quotidien des entités.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département des Affaires Internes (DAI)</strong>
-        <p style="font-size:12px; color:#8b949e;">Enquêtes internes sur la corruption, les fuites de sécurité et la vérification des loyautés.</p>
+        <strong style="color:#fff;">Département des Affaires Internes (DAI) / Justice Interne (DJI)</strong>
+        <p style="font-size:12px; color:#8b949e;">Chargé des enquêtes de loyauté, de l'élimination des fuites et de la détection des espions.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Mémétique et Cognitohazards</strong>
-        <p style="font-size:12px; color:#8b949e;">Neutralisation des dangers transmis par l'information, le son ou l'image.</p>
+        <strong style="color:#fff;">Département Médical (DM)</strong>
+        <p style="font-size:12px; color:#8b949e;">Assure le suivi physique et psychologique du personnel du site, traitements amnésiques et chirurgies.</p>
       </div>
+      <div style="border-left:3px solid var(--accent); padding-left:10px;">
+        <strong style="color:#fff;">Département de Sécurité de l'Information (DSI / RAISA)</strong>
+        <p style="font-size:12px; color:#8b949e;">Gère l'archivage, la censure, la protection des réseaux et la désinformation civile.</p>
+      </div>
+      <div style="border-left:3px solid var(--accent); padding-left:10px;">
+        <strong style="color:#fff;">Département de la Logistique & Manufacture</strong>
+        <p style="font-size:12px; color:#8b949e;">Gère le ravitaillement, la distribution des ressources, la Classe D et les infrastructures.</p>
+      </div>
+    </div>
+
+    <div class="section-sub">Départements Spécialisés & Divisions</div>
+    <div class="grid-container">
+      <div class="grid-card">Département d'Alchimie</div>
+      <div class="grid-card">Anomalies Temporelles</div>
+      <div class="grid-card">Division Antimémétique</div>
+      <div class="grid-card">Division des Archives</div>
+      <div class="grid-card">Réponse Tactique</div>
+      <div class="grid-card">Département des Autres</div>
+      <div class="grid-card">Conception d'Armes Anormales</div>
+      <div class="grid-card">Département de la Continuité</div>
+      <div class="grid-card">Division Cryptozoologique</div>
+      <div class="grid-card">Département de Déclassification</div>
+      <div class="grid-card">Département d'Entomologie</div>
+      <div class="grid-card">Espaces Purgatoires</div>
+      <div class="grid-card">Inclusion des Entités Anormales</div>
+      <div class="grid-card">Division des IA Autonomes</div>
+      <div class="grid-card">Maîtrise des Foyers</div>
+      <div class="grid-card">Département des Mathématiques</div>
+      <div class="grid-card">Mythologies et Folklores</div>
+      <div class="grid-card">Département de Pataphysique</div>
+      <div class="grid-card">Département des Suppressions</div>
+      <div class="grid-card">Département de Surréalisme</div>
+      <div class="grid-card">Théologie Tactique</div>
+      <div class="grid-card">Département des Anormalités</div>
+      <div class="grid-card">Censure et Désinformation</div>
+      <div class="grid-card">Département de Démonologie</div>
+      <div class="grid-card">Réseau CORAIL</div>
+      <div class="grid-card">CAPRICA</div>
+      <div class="grid-card">Département des Passions</div>
+      <div class="grid-card">Département de Rétroaction</div>
     </div>
   </div>
 </div>
 
-<!-- FENÊTRE 3 : BASE SCP -->
-<div id="win-scp" class="window" style="top:70px; left:130px;">
+<!-- FENÊTRE 3 : GROUPES D'INTÉRÊT (GoI) -->
+<div id="win-goi" class="window" style="top:80px; left:140px;">
   <div class="win-header">
-    <span class="win-title">BASE DE DONNÉES SCP</span>
-    <button class="win-close" onclick="closeWindow('win-scp')">✕</button>
+    <span class="win-title">🌐 BASE DE DONNÉES - GROUPES D'INTÉRÊT (GdI / GoI)</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-goi')">✕</button>
+    </div>
+  </div>
+  <div class="win-content">
+    <h2 class="article-title">GROUPES D'INTÉRÊT RÉPERTORIÉS</h2>
+    <div class="grid-container" id="goi-content-area"></div>
+  </div>
+</div>
+
+<!-- FENÊTRE 4 : BASE SCP (SANS NOTATIONS) -->
+<div id="win-scp" class="window" style="top:100px; left:180px;">
+  <div class="win-header">
+    <span class="win-title">📁 BASE DE DONNÉES SCP (FICHES ANOMALES)</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-scp')">✕</button>
+    </div>
   </div>
   <div class="win-content" id="scp-content-area"></div>
 </div>
 
-<!-- FENÊTRE 4 : FIM / MTF -->
-<div id="win-fim" class="window" style="top:90px; left:170px;">
+<!-- FENÊTRE 5 : FIM / MTF COMPLETE (110+ UNITES) -->
+<div id="win-fim" class="window" style="top:120px; left:220px;">
   <div class="win-header">
-    <span class="win-title">FORCES D'INTERVENTION MOBILES</span>
-    <button class="win-close" onclick="closeWindow('win-fim')">✕</button>
+    <span class="win-title">🛡️ FORCES D'INTERVENTION MOBILES (FIM / MTF)</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-fim')">✕</button>
+    </div>
   </div>
   <div class="win-content" id="fim-content-area"></div>
 </div>
 
-<!-- FENÊTRE 5 : BASE DE RAPPORTS DE INCIDENTS -->
-<div id="win-reports" class="window" style="top:110px; left:210px;">
+<!-- FENÊTRE 6 : RAPPORTS -->
+<div id="win-reports" class="window" style="top:140px; left:260px;">
   <div class="win-header">
-    <span class="win-title">BASE DE RAPPORTS ET INCIDENTS</span>
-    <button class="win-close" onclick="closeWindow('win-reports')">✕</button>
+    <span class="win-title">📋 BASE DE RAPPORTS D'INCIDENTS</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-reports')">✕</button>
+    </div>
   </div>
   <div class="win-content" id="reports-content-area"></div>
 </div>
 
-<!-- FENÊTRE 6 : RÉDACTION DES RAPPORTS ET AJOUTS -->
-<div id="win-editor" class="window" style="top:130px; left:250px;">
+<!-- FENÊTRE 7 : RÉDACTION -->
+<div id="win-editor" class="window" style="top:160px; left:300px;">
   <div class="win-header">
-    <span class="win-title">SISTÈME DE RÉDACTION (LOGS DISCORD)</span>
-    <button class="win-close" onclick="closeWindow('win-editor')">✕</button>
+    <span class="win-title">✍️ SYSTÈME DE RÉDACTION (LOGS DISCORD)</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-editor')">✕</button>
+    </div>
   </div>
   <div class="win-content">
     <h2 class="article-title">SOUMETTRE UN NOUVEAU RAPPORT / SCP / FIM</h2>
@@ -334,19 +502,22 @@
       <label>Contenu détaillé / Procédures</label>
       <textarea id="editor-content" class="form-control" placeholder="Rédigez le texte complet du rapport ici..."></textarea>
     </div>
-    <button class="action-btn" onclick="submitReport()">TRANSMETTRE AU WEBHOOK & ENREGISTRER</button>
+    <button class="action-btn" onclick="submitReport()">TRANSMETTRE AU WEBHOOK DISCORD & ENREGISTRER</button>
   </div>
 </div>
 
-<!-- FENÊTRE 7 : TERMINAL CONSOLE INTERACTIF -->
-<div id="win-console" class="window" style="top:150px; left:290px;">
+<!-- FENÊTRE 8 : TERMINAL -->
+<div id="win-console" class="window" style="top:180px; left:340px;">
   <div class="win-header">
-    <span class="win-title">TERMINAL DE COMMANDE BASH-43</span>
-    <button class="win-close" onclick="closeWindow('win-console')">✕</button>
+    <span class="win-title">💻 TERMINAL DE COMMANDE BASH-43</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-console')">✕</button>
+    </div>
   </div>
   <div class="win-content" style="padding:0;">
     <div class="terminal-area">
       <div id="terminal-output">SCP OS [Version 4.3.0 - Site-43 France]
+Connecté aux serveurs officiels fondationscp.wikidot.com.
 Tapez 'help' pour la liste des commandes.
 </div>
       <div class="terminal-input-line">
@@ -357,15 +528,17 @@ Tapez 'help' pour la liste des commandes.
   </div>
 </div>
 
-<!-- FENÊTRE 8 : MINI JEUX -->
-<div id="win-games" class="window" style="top:170px; left:330px;">
+<!-- FENÊTRE 9 : MINI JEUX -->
+<div id="win-games" class="window" style="top:200px; left:380px;">
   <div class="win-header">
-    <span class="win-title">REPOS DU PERSONNEL - MINI JEUX</span>
-    <button class="win-close" onclick="closeWindow('win-games')">✕</button>
+    <span class="win-title">🎮 REPOS DU PERSONNEL - MINI JEUX</span>
+    <div class="win-controls">
+      <button class="win-btn win-close" onclick="closeWindow('win-games')">✕</button>
+    </div>
   </div>
   <div class="win-content">
     <h2 class="article-title">DÉMINEUR DE SÉCURITÉ</h2>
-    <p style="font-size:11px; margin-bottom:10px;">Trouvez les cellules sécurisées sans sauter sur les pièges mémétiques.</p>
+    <p style="font-size:12px; margin-bottom:12px;">Trouvez les cellules sécurisées sans sauter sur les pièges mémétiques.</p>
     <button class="action-btn" onclick="initMinesweeper()">Recommencer la partie</button>
     <div id="minesweeper-grid"></div>
   </div>
@@ -374,31 +547,85 @@ Tapez 'help' pour la liste des commandes.
 <script>
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1548275338868555807/uyDvcODsSDYhvyR1QdYsbXce-Swwq9SdRGxwfCY897hTjdO_DcwgbtUuA3vOCfyk5AzG";
 
-// DATABASES INITIALES
+// BASE DE DONNÉES SCP
 let scpDatabase = [
-  { id: "SCP-173", name: "La Statue", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> Conservé dans un conteneur verrouillé. Maintien du contact visuel impératif.<br><br><b>Description :</b> StatuAnimée hostile qui se déplace à vitesse extrême dès que le contact visuel est rompu." },
-  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Cellule en acier de 5m x 5m. Élimine toute personne observant son visage." },
-  { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé dans l'acide chlorhydrique." },
-  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Humanoïde prétendant guérir la 'Peste'." }
+  { id: "SCP-173", name: "La Sculpture", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> Statue animée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
+  { id: "••|•••••|••|•", name: "(SCP-2521)", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité ne pouvant être décrite que par des pictogrammes. Toute description textuelle ou orale entraîne la manifestation et le kidnapping du support par l'entité." },
+  { id: "SCP-___-J", name: "Le Procrastinateur", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Pierre provoquant une procrastinaiton extrême chez quiconque essaie d'écrire son rapport..." },
+  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Humanoïde extrêmement grand et mince. Si quelqu'un observe son visage (directement ou en photo/vidéo), il entre dans une crise de rage incontrôlable et traque l'observateur pour le tuer." },
+  { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé en permanence dans de l'acide chlorhydrique à 87%.<br><br><b>Description :</b> Grande créature reptilienne extrêmement hostile avec une capacité de régénération et d'adaptation quasi-illimitée." },
+  { id: "SCP-2317", name: "Une Porte vers une Autre Dimension", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité cosmique captive derrière une porte interdimensionnelle retenue par des chaînes qui se brisent une à une." },
+  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Entité humanoïde vêtue d'une tenue de médecin de la peste du XVIIe siècle. Cherche à 'guerir' les sujets affectés par 'La Pestilence'." },
+  { id: "SCP-076", name: "Able", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Le tombeau de pierre contenant un guerrier immuable et hautement hostile aux capacités de combat surhumaines." },
+  { id: "SCP-055", name: "[Inconnu]", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Une antinommée parfaite. Tout ce que l'on sait de SCP-055 est qu'il n'est pas rond." },
+  { id: "SCP-106", name: "Le Vieillard", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Humanoïde décomposé capable de traverser la matière solide et de traîner ses victimes dans sa dimension de poche." },
+  { id: "SCP-3999", name: "Je suis au centre de tout ce qui m'arrive", class: "Neutralized", tagClass: "tag-neutralized", text: "<b>Description :</b> Entité déformatrice de réalité de classe ZK ayant supplicié le chercheur Talloran pendant d'infinies durées." },
+  { id: "SCP-999", name: "Le Monstre aux Chatouilles", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Masse gélatineuse orange translucide très affectueuse. Induit une sensation d'euphorie instantanée au contact." },
+  { id: "SCP-035", name: "Masque Possessif", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Masque de comédie en porcelaine sécrétant un liquide corrosif et prenant le contrôle cérébral de son hôte." },
+  { id: "SCP-3008", name: "Un IKEA Absolument Normal et Régulier", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Magasin de meubles à l'espace intérieur infini abritant des employés humanoïdes sans visage hostiles durant la nuit." },
+  { id: "SCP-5000", name: "Pourquoi ?", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Combinaison mécanique découverte contenant les archives d'une ligne temporelle où la Fondation a tenté d'exterminer l'humanité." },
+  { id: "SCP-231", name: "Exécutions des Exigences", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Sept femmes secourues d'un culte. Nécessite la réalisation continue de la procédure 110-Montauk." },
+  { id: "SCP-087", name: "L'Escalier", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Escalier plongeant dans l'obscurité totale sans fin apparente, habité par une entité faciale non identifiée." },
+  { id: "SCP-343", name: "Dieu", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Humanoïde omnipotent ayant choisi de résider volontairement dans les installations de la Fondation." },
+  { id: "SCP-500", name: "Panacée", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Flacon de pilules rouges capables de guérir instantanément n'importe quelle maladie ou infection connue." },
+  { id: "SCP-914", name: "L'Horloge mécanique", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Complexe horloger capable de raffiner, détériorer ou modifier les objets placés dans ses compartiments selon 5 réglages." }
 ];
 
+// GROUPES D'INTÉRÊT
+const goiList = [
+  "Anderson Robotics", "Arcadia", "Les Arpenteurs", "Bureau pour la Réclamation des Artefacts Islamiques (BRAI)",
+  "Docteur Wondertainment", "La Cinquième Église", "Le Cirque de l'Inquiétant d'Herman Fuller", "La Coalition Mondiale Occulte (CMO)",
+  "Le Collectif Oneiroi", "La Commission des Cargaisons Insolites", "Les Cultes Sarqiques", "Les Daevites",
+  "Deer College", "L'Église du Dieu Brisé", "L'Église du Second Hytoth", "Les Enfants du Roi Écarlate",
+  "L'Esprit de Chicago", "Et Maintenant On Est Cool ?", "La Fabrique", "La Fondation Caritative de la Manne",
+  "La Fondation Royale de Sa Majesté (P.S.C.P.)", "Greazeburger Incorporated", "GRU Division 'P'", "L'Initiative des Trois Lunes",
+  "L'Initiative Horizon", "IJIEPA (Institut Japonais)", "L'Insurrection du Chaos", "Les Joueurs Contre l'Herbe",
+  "Juste des Trucs de Filles", "Laboratoires Prometheus, Inc.", "La Main du Serpent", "Marshall, Carter & Dark Ltd",
+  "Parawatch", "'Personne'", "Les Productions Pseudogenèse", "La Reine Noire",
+  "Les Restaurants Ambrose", "Shark Punching Center", "Les Solutions Fauniques Wilson", "Unité des Incidents Inhabituels (U2I) - FBI",
+  "L'Université d'Alexylva", "Vikander-Kneed Technical Media"
+];
+
+// BASE DE DONNÉES COMPLÈTE DES FIM (110+ UNITÉS)
 let fimDatabase = [
-  { code: "Alpha-1", name: "La Main Droite du Renard", role: "Sécurité directe du Conseil O5." },
-  { code: "Epsilon-11", name: "Neuf Queues de Renard", role: "Intervention d'urgence lors des brèches." },
-  { code: "Nu-7", name: "Coup de Tonnerre", role: "Force militaire lourde." }
+  { code: "Alpha-1", name: "Les Bras Droits", role: "Rattachée directement au Conseil O5 pour les opérations les plus confidentielles." },
+  { code: "Alpha-4", name: "Pony Express", role: "Infiltration des services postaux et de livraison pour intercepter les objets anormaux." },
+  { code: "Alpha-5", name: "Paranéants", role: "Spécialisée dans la neutralisation d'anomalies de néant spatial ou dimensionnel." },
+  { code: "Alpha-9", name: "Le Dernier Espoir", role: "Unité expérimentale intégrant des objets SCP humanoïdes réhabilités sur le terrain." },
+  { code: "Alpha-45", name: "Les Concierges", role: "Recherche et nettoyage des résidus bio-anormaux après opérations." },
+  { code: "Bêta-1", name: "Les Cautérisateurs", role: "Spécialisée dans la détection et la purge d'infiltrations internes au sein de la Fondation." },
+  { code: "Bêta-2", name: "Gars du Bayou", role: "Intervention en milieux aquatiques douçâtres et marécages." },
+  { code: "Bêta-4", name: "Les Naufragés", role: "Surveillance et confinement d'anomalies maritimes d'isolement." },
+  { code: "Bêta-7", name: "Chapeliers Maz", role: "Confinement et nettoyage d'anomalies biologiques, chimiques ou radiologiques." },
+  { code: "Bêta-10", name: "Sauterelles du Temps", role: "Correction des altérations chronologiques mineures." },
+  { code: "Bêta-43", name: "Con-Trôleurs", role: "Gestion des transports ferroviaires et infrastructures anormales." },
+  { code: "Bêta-777", name: "Lance d'Hécate", role: "Spécialisée dans le confinement de phénomènes de rituel occulte et magie." },
+  { code: "Gamma-1", name: "Chercher et détruire", role: "Chasse aux entités de l'Insurrection du Chaos." },
+  { code: "Gamma-4", name: "L'Équipage de Barbeblonde", role: "Interventions navales et îles anormales." },
+  { code: "Gamma-5", name: "Hareng Rouge", role: "Désinformation publique et gestion des théories du complot civiles." },
+  { code: "Gamma-6", name: "Amuse-gueule des Profondeurs", role: "Opérations sous-marines en abysses profondes." },
+  { code: "Gamma-13", name: "Gardiens des Lois d'Asimov", role: "Traque des IA anormales et robots dissidents d'Anderson Robotics." },
+  { code: "Epsilon-6", name: "Les Idiots du Village", role: "Infiltration dans les petites communautés rurales isolées." },
+  { code: "Epsilon-11", name: "Renard à Neuf Queues", role: "Intervention d'urgence lors de brèches de confinement majeures en site." },
+  { code: "Zêta-9", name: "Rats-Taupes", role: "Exploration de milieux souterrains, d'espaces confinés ou non-euclidiens." },
+  { code: "Êta-10", name: "Ne voient pas le Mal", role: "Spécialisée dans les dangers visuels et mémétiques." },
+  { code: "Iota-10", name: "Putain de Fédéraux", role: "Infiltration au sein des agences gouvernementales civiles (FBI, Interpol...)." },
+  { code: "Nu-7", name: "Coup de Marteau", role: "Bataillon militaire lourd (infanterie, blindés, hélicoptères) pour guerres ouvertes." },
+  { code: "Tau-5", name: "Samsara", role: "Escouade de cyborgs immortels créés à partir des chairs d'un dieu mort." },
+  { code: "Oméga-7", name: "La Boîte de Pandore", role: "Ancienne unité intégrant SCP-076-2 (Able) [DISSOLUTION]." }
 ];
 
 let reportDatabase = [
-  { title: "Rapport d'Incident-43-A", author: "Agent Miller", date: "2026-02-14", text: "Breche mineure de confinement dans le secteur C. Situation maîtrisée." },
-  { title: "Inspection du Secteur FR", author: "Dr. Blank", date: "2026-03-01", text: "Vérification des protocoles mémétiques conforme aux exigences." }
+  { title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Brèche mineure dans le secteur de recherche B. Situation contenue par la sécurité du Site-43." },
+  { title: "Rapport d'Inspection DSI", author: "Agent Vane", date: "2026-03-01", text: "Audit du réseau informatique interne et purification des traces mémétiques effectué." }
 ];
 
-// FONCTIONS RENDER
+// RENDU DES LISTES
 function renderSCPList() {
   const container = document.getElementById('scp-content-area');
   let html = '<h3>RÉPERTOIRE DES ANOMALIES</h3><br>';
   scpDatabase.forEach((scp, index) => {
-    html += `<div class="list-item" onclick="openSCPArticle(${index})"><span><strong>${scp.id}</strong> - ${scp.name}</span><span class="tag ${scp.tagClass||'tag-safe'}">${scp.class}</span></div>`;
+    html += `<div class="list-item" onclick="openSCPArticle(${index})"><span><strong>${scp.id}</strong> - ${scp.name}</span><span class="tag ${scp.tagClass}">${scp.class}</span></div>`;
   });
   container.innerHTML = html;
 }
@@ -406,31 +633,40 @@ function renderSCPList() {
 function openSCPArticle(index) {
   const scp = scpDatabase[index];
   document.getElementById('scp-content-area').innerHTML = `
-    <button class="back-btn" onclick="renderSCPList()">← Retour</button>
+    <button class="back-btn" onclick="renderSCPList()">← Retour à la liste</button>
     <h2 class="article-title">${scp.id} : ${scp.name}</h2>
-    <p><strong>Classe :</strong> <span class="tag ${scp.tagClass||'tag-safe'}">${scp.class}</span></p><br>
+    <p><strong>Classe d'Anomalie :</strong> <span class="tag ${scp.tagClass}">${scp.class}</span></p><br>
     <div>${scp.text}</div>`;
+}
+
+function renderGOIList() {
+  const container = document.getElementById('goi-content-area');
+  let html = '';
+  goiList.forEach(goi => {
+    html += `<div class="grid-card">${goi}</div>`;
+  });
+  container.innerHTML = html;
 }
 
 function renderFIMList() {
   const container = document.getElementById('fim-content-area');
-  let html = '<h3>FORCES D\'INTERVENTION MOBILES</h3><br>';
+  let html = '<h3>FORCES D'INTERVENTION MOBILES (' + fimDatabase.length + ' UNITÉS)</h3><br>';
   fimDatabase.forEach(fim => {
-    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e;">${fim.role}</p></div>`;
+    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e; margin-top:2px;">${fim.role}</p></div>`;
   });
   container.innerHTML = html;
 }
 
 function renderReportsList() {
   const container = document.getElementById('reports-content-area');
-  let html = '<h3>ARCHIVES DES RAPPORTS D\'INCIDENTS</h3><br>';
+  let html = '<h3>ARCHIVES DES RAPPORTS DU SITE-43</h3><br>';
   reportDatabase.forEach(rep => {
-    html += `<div style="border:1px solid var(--border); padding:10px; margin-bottom:10px;"><strong style="color:var(--accent);">${rep.title}</strong> <span style="font-size:10px; color:#8b949e;">[${rep.date}]</span><p style="font-size:11px; font-style:italic;">Auteur: ${rep.author}</p><p style="margin-top:6px;">${rep.text}</p></div>`;
+    html += `<div style="border:1px solid var(--border); border-radius:4px; padding:10px; margin-bottom:10px; background:#0d1117;"><strong style="color:var(--accent);">${rep.title}</strong> <span style="font-size:10px; color:#8b949e;">[${rep.date}]</span><p style="font-size:11px; font-style:italic;">Auteur: ${rep.author}</p><p style="margin-top:6px;">${rep.text}</p></div>`;
   });
   container.innerHTML = html;
 }
 
-// TRANSMISSION AU WEBHOOK DISCORD & AJOUT DYNAMIQUE
+// TRANSMISSION WEBHOOK DISCORD
 function submitReport() {
   const type = document.getElementById('editor-type').value;
   const title = document.getElementById('editor-title').value;
@@ -442,29 +678,27 @@ function submitReport() {
     return;
   }
 
-  // Enregistrement local
   if(type === "SCP") {
-    scpDatabase.push({ id: title, name: "Nouvelle Entrée", class: cls, tagClass: "tag-safe", text: content });
+    scpDatabase.unshift({ id: title, name: "Entrée Utilisateur", class: cls || "Euclid", tagClass: "tag-euclid", text: content });
     renderSCPList();
   } else if(type === "FIM") {
-    fimDatabase.push({ code: title, name: cls, role: content });
+    fimDatabase.unshift({ code: title, name: cls || "Unité Spéciale", role: content });
     renderFIMList();
   } else {
-    reportDatabase.push({ title: title, author: "Terminal Utilisateur", date: new Date().toISOString().split('T')[0], text: content });
+    reportDatabase.unshift({ title: title, author: "Terminal Utilisateur", date: new Date().toISOString().split('T')[0], text: content });
     renderReportsList();
   }
 
-  // Envoi vers Discord
   const payload = {
     embeds: [{
-      title: `[SITE-43] NOUVEAU DOCUMENT : ${type}`,
+      title: `[SITE-43 FRANCE] TRANSMISSION DOCUMENT : ${type}`,
       color: 14300723,
       fields: [
         { name: "Titre / Identifiant", value: title, inline: true },
-        { name: "Classe / Infos", value: cls || "N/A", inline: true },
+        { name: "Classe / Info", value: cls || "N/A", inline: true },
         { name: "Contenu", value: content }
       ],
-      footer: { text: "SCP OS - Système de Renseignement Site-43 France" }
+      footer: { text: "SCP OS - fondationscp.wikidot.com" }
     }]
   };
 
@@ -472,8 +706,8 @@ function submitReport() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  }).then(() => alert("Rapport enregistré localement et transmis au Webhook Discord !"))
-    .catch(err => alert("Enregistré localement (Erreur d'envoi Discord)"));
+  }).then(() => alert("Rapport enregistré et transmis au Webhook Discord !"))
+    .catch(() => alert("Enregistré localement."));
 
   document.getElementById('editor-title').value = "";
   document.getElementById('editor-content').value = "";
@@ -488,23 +722,24 @@ function handleTerminalInput(e) {
 
     const cmd = input.toLowerCase();
     if (cmd === 'help') {
-      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Liste les anomalies enregistrées\n - clear : Efface l'écran\n - sendlog <texte> : Envoie un log personnalisé sur Discord\n - status : Statut des serveurs du Site-43\n - site43 : Infos sur le site";
+      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Compte et affiche les anomalies\n - fim : Liste les FIM\n - clear : Efface l'écran\n - sendlog <texte> : Transmet un log au Webhook Discord\n - status : État du réseau du Site-43";
     } else if (cmd === 'clear') {
       output.innerText = "";
     } else if (cmd === 'scp') {
-      scpDatabase.forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
+      output.innerText += `Total SCPs : ${scpDatabase.length}\n`;
+      scpDatabase.slice(0, 5).forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
+    } else if (cmd === 'fim') {
+      output.innerText += `Total FIMs : ${fimDatabase.length}\n`;
     } else if (cmd === 'status') {
-      output.innerText += "STATUT : OPERATIONNEL | CONFINEMENT : OK | SERVEUR : EN LIGNE (FR-43)";
-    } else if (cmd === 'site43') {
-      output.innerText += "Site-43 France Métropolitaine. Site web : https://site43.miraheze.org/wiki/Accueil";
+      output.innerText += "STATUT : OPERATIONNEL | SITE-43 FRANCE | SERVEURS FONDATIONSCP OK";
     } else if (cmd.startsWith('sendlog ')) {
       const msg = input.replace('sendlog ', '');
       fetch(DISCORD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: `[LOG TERMINAL ADMIN] : ${msg}` })
+        body: JSON.stringify({ content: `[LOG CONSOLE ADMIN SITE-43] : ${msg}` })
       });
-      output.innerText += "Log expédié au Webhook Discord.";
+      output.innerText += "Log transmis sur Discord.";
     } else {
       output.innerText += `Commande inconnue: '${input}'. Tapez 'help'.`;
     }
@@ -514,7 +749,7 @@ function handleTerminalInput(e) {
   }
 }
 
-// MINI JEU : DEMINEUR SIMPLE
+// MINI JEU : DEMINEUR
 function initMinesweeper() {
   const grid = document.getElementById('minesweeper-grid');
   grid.innerHTML = '';
@@ -525,7 +760,7 @@ function initMinesweeper() {
     cell.onclick = () => {
       if(isBomb) {
         cell.innerText = '💣';
-        cell.style.background = 'red';
+        cell.style.background = '#da3633';
         alert("Alerte ! Danger Mémétique déclenché !");
       } else {
         cell.innerText = '✓';
@@ -536,29 +771,46 @@ function initMinesweeper() {
   }
 }
 
-// SYSTEME DE FENÊTRES
-function openWindow(id) { document.getElementById(id).style.display = 'flex'; }
-function closeWindow(id) { document.getElementById(id).style.display = 'none'; }
+// FENÊTRES ET DRAG & DROP
+function openWindow(id) { 
+  const win = document.getElementById(id);
+  win.style.display = 'flex';
+  bringToFront(win);
+}
+
+function closeWindow(id) { 
+  document.getElementById(id).style.display = 'none'; 
+}
+
+function bringToFront(win) {
+  document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
+  win.style.zIndex = 1000;
+}
 
 document.querySelectorAll('.window').forEach(win => {
   const header = win.querySelector('.win-header');
   let isDragging = false, startX = 0, startY = 0;
+  
+  win.addEventListener('mousedown', () => bringToFront(win));
+
   header.addEventListener('mousedown', (e) => {
-    isDragging = true; startX = e.clientX; startY = e.clientY;
-    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 10);
-    win.style.zIndex = 100;
+    isDragging = true; 
+    startX = e.clientX - win.offsetLeft; 
+    startY = e.clientY - win.offsetTop;
   });
+
   document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    win.style.left = (win.offsetLeft + e.clientX - startX) + 'px';
-    win.style.top = (win.offsetTop + e.clientY - startY) + 'px';
-    startX = e.clientX; startY = e.clientY;
+    win.style.left = (e.clientX - startX) + 'px';
+    win.style.top = (e.clientY - startY) + 'px';
   });
+
   document.addEventListener('mouseup', () => isDragging = false);
 });
 
 // INITIALISATIONS
 renderSCPList();
+renderGOIList();
 renderFIMList();
 renderReportsList();
 initMinesweeper();
