@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fondation SCP - Archives des Rapports</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="scp-theme">
+  <header>
+    <h1>ARCHIVES TERMINAL DE LA FONDATION</h1>
+    <!-- Zone de connexion Admin pour Zeyfix -->
+    <div id="authStatus">
+      <button onclick="loginAsZeyfix()">Connexion Administration (Zeyfix)</button>
+    </div>
+  </header>
+
+  <main>
+    <h2>BASE DE DONNÉES EN LIGNE</h2>
+    
+    <!-- Filtres par catégorie -->
+    <div class="filters">
+      <button onclick="filterReports('All')">Tous</button>
+      <button onclick="filterReports('Scientifique')">Scientifique</button>
+      <button onclick="filterReports('Securite')">Sécurité</button>
+      <button onclick="filterReports('Administratif')">Administratif</button>
+      <button onclick="filterReports('FIM')">FIM</button>
+    </div>
+
+    <!-- Liste dynamique des rapports -->
+    <div id="reportsContainer">
+      <!-- Les rapports envoyés apparaîtront ici via JS -->
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
