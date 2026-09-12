@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fondation SCP - Terminal O5</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="scp-theme console-mode">
+  <header>
+    <h1>TERMINAL D'ACCÈS DIRECT — SYSTEM/OS v4.08</h1>
+    <div id="authStatus"></div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="scps.html">Base SCP</a>
+      <a href="departements.html">Départements</a>
+      <a href="mtf.html">FIM / MTF</a>
+      <a href="rapport.html">Base Rapports</a>
+      <a href="redaction.html">Rédaction</a>
+      <a href="console.html" class="active">>_ TERMINAL</a>
+    </nav>
+  </header>
+
+  <main class="console-container">
+    <div id="terminalOutput">
+      <p>[SYSTEM INITIALIZED...]</p>
+      <p>Bienvenue sur le réseau Intranet central de la Fondation SCP.</p>
+      <p>Tapez <span style="color:#00ff00;">help</span> pour afficher la liste des commandes disponibles.</p>
+    </div>
+    
+    <div class="command-line">
+      <span class="prompt">SCPOS@SITE-19:~#</span>
+      <input type="text" id="cliInput" autofocus placeholder="Entrez une commande..." autocomplete="off">
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
