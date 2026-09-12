@@ -3,62 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fondation SCP - Terminal Intranet Central</title>
+  <title>SCPNet — Intranet Central Site-43</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="scp-theme">
   <header>
-    <div class="logo-container">
-      <div class="scp-logo-placeholder">[ LOGO SCP ]</div>
-      <h1>FONDATION SCP — INTRANET CENTRAL</h1>
+    <div class="os-bar">
+      <h1>SCPOS v4.08 — SITE-43 INTRANET</h1>
+      <div id="authStatus"></div>
     </div>
     <nav>
       <a href="index.html" class="active">Accueil</a>
+      <a href="scps.html">Base SCP</a>
       <a href="departements.html">Départements</a>
       <a href="mtf.html">FIM / MTF</a>
-      <a href="rapports.html">Base des Rapports</a>
-      <a href="redaction.html">Nouveau Rapport</a>
+      <a href="rapport.html">Base Rapports</a>
+      <a href="redaction.html">Rédaction</a>
+      <a href="console.html">>_ TERMINAL</a>
     </nav>
   </header>
 
   <main>
     <section class="warning-banner">
-      <h2>⚠️ AVIS DE SÉCURITÉ NIVEAU 2+ OBLIGATOIRE ⚠️</h2>
-      <p>L'accès non autorisé aux fichiers ci-joints est punissable par administration d'amnésiques de Classe-A ou terminaison immédiate. Vos identifiants réseau et adresse IP ont été enregistrés.</p>
+      <h2>⚠️ HABILITATION NIVEAU 2 REQUISE</h2>
+      <p>L'accès non autorisé est passible d'une administration d'amnésiques de Classe-A ou d'une neutralisation immédiate. Votre adresse IP ainsi que votre identifiant de session sont enregistrés.</p>
     </section>
 
     <section class="intro-section">
       <h2>PRÉSENTATION DE LA FONDATION</h2>
-      <p>Operant à l'échelle mondiale et en dehors de toute juridiction gouvernementale, la <strong>Fondation SCP</strong> a pour mandat de sécuriser, confiner et protéger l'humanité contre les anomalies spatiales, temporelles, biologiques et conceptuelles qui menacent la normalité du monde connu.</p>
+      <p>Opérant à l'échelle mondiale, la <strong>Fondation SCP</strong> sécurise, confine et protège l'humanité contre les phénomènes anormaux qui menacent la réalité standard.</p>
 
       <div class="motto-grid">
-        <div class="motto-card">
-          <h3>SÉCURISER (Secure)</h3>
-          <p>La Fondation sécurise les anomalies afin d'empêcher qu'elles ne tombent entre les mains de groupes d'intérêt rivaux ou du grand public grâce à un réseau de surveillance mondial.</p>
+        <div class="dept-card">
+          <h4>SÉCURISER</h4>
+          <p>Intercepter les objets anormaux avant qu'ils ne tombent entre d'autres mains.</p>
         </div>
-        <div class="motto-card">
-          <h3>CONFINER (Contain)</h3>
-          <p>La Fondation contraint les anomalies en concevant des procédures de confinement spéciales (PCC) sur mesure dans nos Sites et Zones hautement sécurisés.</p>
+        <div class="dept-card">
+          <h4>CONFINER</h4>
+          <p>Élaborer des procédures de confinement sur mesure dans nos installations sécurisées.</p>
         </div>
-        <div class="motto-card">
-          <h3>PROTÉGER (Protect)</h3>
-          <p>La Fondation protège l'humanité des effets destructeurs de ces anomalies, tout en préservant le voile du secret grâce à l'usage d'amnésiques et de désinformation.</p>
+        <div class="dept-card">
+          <h4>PROTÉGER</h4>
+          <p>Protéger l'humanité des effets dévastateurs de ces entités anormales.</p>
         </div>
       </div>
     </section>
-
-    <section class="stats-overview">
-      <h2>VUE D'ENSEMBLE DU RÉSEAU DE CONFINEMENT</h2>
-      <ul>
-        <li><strong>Sites d'Intervention Activés :</strong> 142 Sites Majeurs, 88 Zones Confinées</li>
-        <li><strong>Accréditation Maximale Courante :</strong> Niveau 5 (O5 Council)</li>
-        <li><strong>Réseaux Locaux Connectés :</strong> Branches EN, FR, RU, DE, JP, ZH, KO, PL, ES, IT</li>
-      </ul>
-    </section>
   </main>
 
-  <footer>
-    <p>&copy; Fondation SCP — Securiser, Confiner, Proteger. Contenu sous licence CC-BY-SA 3.0.</p>
-  </footer>
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <span class="start-btn">SCPSci</span>
+      <span>Réseau : Sécurisé (Crypter v8)</span>
+    </div>
+    <div class="taskbar-right" id="clock">12:00</div>
+  </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
