@@ -30,7 +30,6 @@
     background-size: 24px 24px;
   }
 
-  /* BUREAU ET ICÔNES DE STYLE SYSTEME D'EXPLOITATION */
   #desktop {
     width: 100vw;
     height: calc(100vh - 40px);
@@ -67,7 +66,6 @@
   .icon-img { font-size: 32px; margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
   .icon-title { font-size: 11px; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-  /* BARRE DES TÂCHES TYPE OS */
   #taskbar {
     height: 40px;
     background: rgba(1, 4, 9, 0.95);
@@ -129,7 +127,6 @@
 
   .system-status { font-size: 11px; color: #8b949e; font-family: var(--font-mono); }
 
-  /* FENÊTRES FLOTTANTES INTERACTIVES */
   .window {
     position: absolute;
     width: 850px;
@@ -192,7 +189,6 @@
     user-select: text;
   }
 
-  /* STYLES INTERNES DOCUMENTS */
   .list-item {
     padding: 10px 14px;
     border: 1px solid var(--border);
@@ -252,7 +248,6 @@
   .form-control:focus { border-color: var(--accent); outline: none; }
   textarea.form-control { resize: vertical; min-height: 100px; }
 
-  /* TERMINAL CONSOLE INTERACTIF */
   .terminal-area { background: #000; color: #00ff66; font-family: var(--font-mono); height: 100%; display: flex; flex-direction: column; padding: 14px; }
   #terminal-output { flex: 1; overflow-y: auto; margin-bottom: 10px; white-space: pre-wrap; font-size: 13px; line-height: 1.4; }
   .terminal-input-line { display: flex; align-items: center; }
@@ -260,15 +255,18 @@
   #terminal-input { background: transparent; border: none; color: #00ff66; font-family: var(--font-mono); width: 100%; font-size: 13px; }
   #terminal-input:focus { outline: none; }
 
-  /* MINI JEU */
   #minesweeper-grid { display: grid; grid-template-columns: repeat(8, 36px); gap: 4px; margin-top: 15px; }
   .cell { width: 36px; height: 36px; background: #21262d; border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
   .cell.revealed { background: #0d1117; }
+  
+  .stats-panel { display: flex; gap: 10px; margin-bottom: 15px; }
+  .stat-card { background: #0d1117; border: 1px solid var(--border); padding: 10px; flex: 1; text-align: center; border-radius: 4px; }
+  .stat-card h4 { color: #8b949e; font-size: 10px; text-transform: uppercase; }
+  .stat-card div { font-size: 16px; font-weight: bold; color: var(--accent); font-family: var(--font-mono); }
 </style>
 </head>
 <body>
 
-<!-- BUREAU INTERACTIF DESKTOP OS -->
 <div id="desktop">
   <div class="icon" onclick="openWindow('win-site43')">
     <div class="icon-img">🏢</div>
@@ -316,14 +314,12 @@
   </div>
 </div>
 
-<!-- BARRE DES TÂCHES -->
 <div id="taskbar">
   <button class="start-btn">⚠️ FONDATION OS</button>
   <div class="taskbar-items" id="taskbar-items"></div>
   <div class="system-status">SÉCURITÉ : NIVEAU 4 | SITE-43 FRANCE | FONDATION SCP</div>
 </div>
 
-<!-- FENÊTRE 1 : SITE-43 -->
 <div id="win-site43" class="window" style="top:40px; left:60px;">
   <div class="win-header">
     <span class="win-title">🏢 DOSSIER INFOS - SITE-43 (FRANCE)</span>
@@ -344,7 +340,6 @@
   </div>
 </div>
 
-<!-- FENÊTRE 2 : DÉPARTEMENTS ET STRUCTURES -->
 <div id="win-departments" class="window" style="top:60px; left:100px;">
   <div class="win-header">
     <span class="win-title">🏛️ STRUCTURE INTERNE & DÉPARTEMENTS</span>
@@ -425,7 +420,6 @@
   </div>
 </div>
 
-<!-- FENÊTRE 3 : GROUPES D'INTÉRÊT (GoI) -->
 <div id="win-goi" class="window" style="top:80px; left:140px;">
   <div class="win-header">
     <span class="win-title">🌐 BASE DE DONNÉES - GROUPES D'INTÉRÊT (GdI / GoI)</span>
@@ -439,7 +433,6 @@
   </div>
 </div>
 
-<!-- FENÊTRE 4 : BASE SCP -->
 <div id="win-scp" class="window" style="top:100px; left:180px;">
   <div class="win-header">
     <span class="win-title">📁 BASE DE DONNÉES SCP (FICHES ANOMALES)</span>
@@ -450,7 +443,6 @@
   <div class="win-content" id="scp-content-area"></div>
 </div>
 
-<!-- FENÊTRE 5 : FIM / MTF -->
 <div id="win-fim" class="window" style="top:120px; left:220px;">
   <div class="win-header">
     <span class="win-title">🛡️ FORCES D'INTERVENTION MOBILES (FIM / MTF)</span>
@@ -461,7 +453,6 @@
   <div class="win-content" id="fim-content-area"></div>
 </div>
 
-<!-- FENÊTRE 6 : RAPPORTS -->
 <div id="win-reports" class="window" style="top:140px; left:260px;">
   <div class="win-header">
     <span class="win-title">📋 BASE DE RAPPORTS D'INCIDENTS</span>
@@ -469,10 +460,21 @@
       <button class="win-btn win-close" onclick="closeWindow('win-reports')">✕</button>
     </div>
   </div>
-  <div class="win-content" id="reports-content-area"></div>
+  <div class="win-content">
+    <div class="stats-panel">
+      <div class="stat-card">
+        <h4>Points XP Modérateur</h4>
+        <div id="xp-display">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Niveau Accréditation</h4>
+        <div id="level-display">Niveau 1</div>
+      </div>
+    </div>
+    <div id="reports-content-area"></div>
+  </div>
 </div>
 
-<!-- FENÊTRE 7 : RÉDACTION -->
 <div id="win-editor" class="window" style="top:160px; left:300px;">
   <div class="win-header">
     <span class="win-title">✍️ SYSTÈME DE RÉDACTION (LOGS DISCORD)</span>
@@ -485,9 +487,9 @@
     <div class="form-group">
       <label>Type de Document</label>
       <select id="editor-type" class="form-control">
-        <option value="SCP">Nouveau Rapport SCP</option>
-        <option value="FIM">Nouvelle Force d'Intervention (FIM)</option>
-        <option value="INCIDENT">Rapport d'Incident / Mission</option>
+        <option value="INCIDENT">Rapport d'Incident / Mission (+25 XP)</option>
+        <option value="SCP">Nouveau Rapport SCP (+20 XP)</option>
+        <option value="FIM">Nouvelle Force d'Intervention (+15 XP)</option>
       </select>
     </div>
     <div class="form-group">
@@ -506,7 +508,6 @@
   </div>
 </div>
 
-<!-- FENÊTRE 8 : TERMINAL -->
 <div id="win-console" class="window" style="top:180px; left:340px;">
   <div class="win-header">
     <span class="win-title">💻 TERMINAL DE COMMANDE BASH-43</span>
@@ -528,7 +529,6 @@ Tapez 'help' pour la liste des commandes.
   </div>
 </div>
 
-<!-- FENÊTRE 9 : MINI JEUX -->
 <div id="win-games" class="window" style="top:200px; left:380px;">
   <div class="win-header">
     <span class="win-title">🎮 REPOS DU PERSONNEL - MINI JEUX</span>
@@ -546,8 +546,8 @@ Tapez 'help' pour la liste des commandes.
 
 <script>
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1548275338868555807/uyDvcODsSDYhvyR1QdYsbXce-Swwq9SdRGxwfCY897hTjdO_DcwgbtUuA3vOCfyk5AzG";
+const ADMIN_CODE = "K9#mX$8p!L2qZ@wN";
 
-// BASE DE DONNÉES SCP
 let scpDatabase = [
   { id: "SCP-173", name: "La Sculpture", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> Statue animée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
   { id: "••|•••••|••|•", name: "(SCP-2521)", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité ne pouvant être décrite que par des pictogrammes. Toute description textuelle ou orale entraîne la manifestation et le kidnapping du support par l'entité." },
@@ -571,7 +571,6 @@ let scpDatabase = [
   { id: "SCP-914", name: "L'Horloge mécanique", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Complexe horloger capable de raffiner, détériorer ou modifier les objets placés dans ses compartiments selon 5 réglages." }
 ];
 
-// GROUPES D'INTÉRÊT
 const goiList = [
   "Anderson Robotics", "Arcadia", "Les Arpenteurs", "Bureau pour la Réclamation des Artefacts Islamiques (BRAI)",
   "Docteur Wondertainment", "La Cinquième Église", "Le Cirque de l'Inquiétant d'Herman Fuller", "La Coalition Mondiale Occulte (CMO)",
@@ -586,7 +585,6 @@ const goiList = [
   "L'Université d'Alexylva", "Vikander-Kneed Technical Media"
 ];
 
-// BASE DE DONNÉES COMPLÈTE DES FIM
 let fimDatabase = [
   { code: "Alpha-1", name: "Les Bras Droits", role: "Rattachée directement au Conseil O5 pour les opérations les plus confidentielles." },
   { code: "Alpha-4", name: "Pony Express", role: "Infiltration des services postaux et de livraison pour intercepter les objets anormaux." },
@@ -615,12 +613,30 @@ let fimDatabase = [
   { code: "Oméga-7", name: "La Boîte de Pandore", role: "Ancienne unité intégrant SCP-076-2 (Able) [DISSOLUTION]." }
 ];
 
-let reportDatabase = [
-  { title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Brèche mineure dans le secteur de recherche B. Situation contenue par la sécurité du Site-43." },
-  { title: "Rapport d'Inspection DSI", author: "Agent Vane", date: "2026-03-01", text: "Audit du réseau informatique interne et purification des traces mémétiques effectué." }
+// SAUVEGARDE PERMANENTE
+let reportDatabase = JSON.parse(localStorage.getItem('scp_reportsDB_v2')) || [
+  { id: "1001", title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Brèche mineure dans le secteur de recherche B. Situation contenue." },
+  { id: "1002", title: "Rapport d'Inspection DSI", author: "Agent Vane", date: "2026-03-01", text: "Audit du réseau informatique interne et purification des traces mémétiques." }
 ];
 
-// RENDU DES LISTES
+let xp = parseInt(localStorage.getItem('scp_userXP_v2')) || 0;
+
+function saveToStorage() {
+  localStorage.setItem('scp_reportsDB_v2', JSON.stringify(reportDatabase));
+  localStorage.setItem('scp_userXP_v2', xp);
+}
+
+function updateGamification() {
+  document.getElementById('xp-display').innerText = xp;
+  let clearance = "Niveau 1";
+  if (xp >= 100) clearance = "Niveau 2";
+  if (xp >= 250) clearance = "Niveau 3";
+  if (xp >= 500) clearance = "Niveau 4";
+  if (xp >= 1000) clearance = "Conseil O5";
+  document.getElementById('level-display').innerText = clearance;
+}
+
+// RENDU DES LISTES ET DOSSIERS
 function renderSCPList() {
   const container = document.getElementById('scp-content-area');
   let html = '<h3>RÉPERTOIRE DES ANOMALIES</h3><br>';
@@ -652,41 +668,156 @@ function renderFIMList() {
   const container = document.getElementById('fim-content-area');
   let html = `<h3>FORCES D'INTERVENTION MOBILES (${fimDatabase.length} UNITÉS)</h3><br>`;
   fimDatabase.forEach(fim => {
-    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;">
-      <strong style="color:var(--accent);">${fim.code} - "${fim.name}"</strong>
-      <p style="font-size:12px; color:#8b949e;">${fim.role}</p>
-    </div>`;
+    html += `<div class="list-item"><span><strong>FIM ${fim.code}</strong> - "${fim.name}"</span></div><p style="font-size:11px; color:#8b949e; margin-bottom:10px; padding-left:10px;">${fim.role}</p>`;
   });
   container.innerHTML = html;
 }
 
-function renderReportsList() {
+function renderReportList() {
   const container = document.getElementById('reports-content-area');
-  let html = '<h3>RAPPORTS D\'INCIDENTS REGISTRÉS</h3><br>';
+  if (reportDatabase.length === 0) {
+    container.innerHTML = '<p>Aucun rapport d\'incident dans la base de données.</p>';
+    updateGamification();
+    return;
+  }
+  let html = '';
   reportDatabase.forEach(rep => {
-    html += `<div style="background:#0d1117; border:1px solid var(--border); padding:10px; margin-bottom:8px; border-radius:4px;">
-      <h4 style="color:var(--accent);">${rep.title}</h4>
-      <small style="color:#8b949e;">Auteur: ${rep.author} | Date: ${rep.date}</small>
-      <p style="margin-top:6px;">${rep.text}</p>
+    html += `<div class="list-item" style="flex-direction:column; align-items:flex-start;">
+      <div style="display:flex; justify-content:space-between; width:100%;">
+        <strong>[ID: #${rep.id}] ${escapeHTML(rep.title)}</strong>
+        <small style="color:#8b949e;">${rep.date}</small>
+      </div>
+      <p style="font-size:12px; margin-top:6px;">${escapeHTML(rep.text)}</p>
+      <small style="color:var(--accent); font-size:10px; margin-top:4px;">Auteur: ${escapeHTML(rep.author || 'Inconnu')}</small>
     </div>`;
   });
   container.innerHTML = html;
+  updateGamification();
 }
 
-// GESTION DES FENÊTRES
-let topZIndex = 100;
+function submitReport() {
+  const type = document.getElementById('editor-type').value;
+  const title = document.getElementById('editor-title').value.trim();
+  const classVal = document.getElementById('editor-class').value.trim();
+  const content = document.getElementById('editor-content').value.trim();
 
+  if (!title || !content) {
+    alert("Veuillez saisir un titre et un contenu.");
+    return;
+  }
+
+  const id = Date.now().toString().slice(-4);
+  const newRep = {
+    id: id,
+    title: `[${type}] ${title} (${classVal})`,
+    author: "Chercheur du Site-43",
+    date: new Date().toLocaleDateString('fr-FR'),
+    text: content
+  };
+
+  reportDatabase.unshift(newRep);
+  xp += (type === 'INCIDENT' ? 25 : 20);
+  
+  saveToStorage();
+  renderReportList();
+
+  // Webhook Discord
+  fetch(DISCORD_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      content: `⚠️ **NOUVEAU RAPPORT ENREGISTRÉ [SITE-43]**\n**ID:** #${id}\n**Type:** ${type}\n**Titre:** ${title}\n**Classe:** ${classVal}\n**Contenu:** ${content}`
+    })
+  }).catch(e => console.log("Log Webhook non transmis à Discord"));
+
+  document.getElementById('editor-title').value = '';
+  document.getElementById('editor-class').value = '';
+  document.getElementById('editor-content').value = '';
+
+  alert(`Rapport #${id} enregistré dans la base permanente et transmis au réseau.`);
+}
+
+// FONCTION SUPPRESSION PAR LA CONSOLE DE COMMANDE
+window.Admin = function(code, reportId) {
+  if (code !== ADMIN_CODE) {
+    console.error("⛔ Code Administrateur incorrect.");
+    return "Échec de l'authentification.";
+  }
+
+  const index = reportDatabase.findIndex(r => String(r.id) === String(reportId));
+
+  if (index === -1) {
+    console.warn(`⚠️ Rapport avec l'ID #${reportId} introuvable.`);
+    return "ID non trouvé.";
+  }
+
+  reportDatabase.splice(index, 1);
+  xp += 50;
+  saveToStorage();
+  renderReportList();
+
+  console.log(`✅ Succès : Le rapport #${reportId} a été purgé.`);
+  return "Rapport supprimé avec succès.";
+};
+
+// TERMINAL INTERACTIF BASH
+function handleTerminalInput(e) {
+  if (e.key === 'Enter') {
+    const input = document.getElementById('terminal-input');
+    const cmd = input.value.trim();
+    const output = document.getElementById('terminal-output');
+    
+    output.innerText += `\nadmin@site43:~# ${cmd}`;
+    
+    const parts = cmd.split(' ');
+    const command = parts[0].toLowerCase();
+
+    if (command === 'help') {
+      output.innerText += `\nCommandes disponibles:
+- help : Affiche ce message
+- clear : Efface l'écran
+- list : Liste les rapports d'incidents
+- delete <code> <id> : Supprime un rapport d'incident avec la clé Admin
+- status : État des serveurs du Site-43`;
+    } else if (command === 'clear') {
+      output.innerText = '';
+    } else if (command === 'list') {
+      output.innerText += `\n--- RAPPORTS ACTIFS ---`;
+      reportDatabase.forEach(r => {
+        output.innerText += `\n[#${r.id}] ${r.title}`;
+      });
+    } else if (command === 'delete') {
+      const code = parts[1];
+      const id = parts[2];
+      const res = window.Admin(code, id);
+      output.innerText += `\n${res}`;
+    } else if (command === 'status') {
+      output.innerText += `\n[OK] Confinement actif à 99.8%.\n[OK] Liaison Réseau CORAIL établie.`;
+    } else if (cmd !== '') {
+      output.innerText += `\nCommande inconnue: '${cmd}'. Tapez 'help'.`;
+    }
+
+    input.value = '';
+    output.scrollTop = output.scrollHeight;
+  }
+}
+
+// GESTION FENÊTRES BURAUMATIQUE
 function openWindow(id) {
   const win = document.getElementById(id);
   win.style.display = 'flex';
-  topZIndex++;
-  win.style.zIndex = topZIndex;
+  bringToFront(win);
   updateTaskbar();
 }
 
 function closeWindow(id) {
   document.getElementById(id).style.display = 'none';
   updateTaskbar();
+}
+
+function bringToFront(win) {
+  document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
+  win.style.zIndex = 101;
 }
 
 function updateTaskbar() {
@@ -698,114 +829,13 @@ function updateTaskbar() {
       const tab = document.createElement('div');
       tab.className = 'taskbar-tab active';
       tab.innerText = title.split('-')[0];
-      tab.onclick = () => {
-        topZIndex++;
-        win.style.zIndex = topZIndex;
-      };
+      tab.onclick = () => bringToFront(win);
       container.appendChild(tab);
     }
   });
 }
 
-// GLISSER-DÉPOSER DES FENÊTRES
-document.querySelectorAll('.window').forEach(win => {
-  const header = win.querySelector('.win-header');
-  let isDragging = false;
-  let offsetX = 0, offsetY = 0;
-
-  win.addEventListener('mousedown', () => {
-    topZIndex++;
-    win.style.zIndex = topZIndex;
-  });
-
-  header.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    offsetX = e.clientX - win.offsetLeft;
-    offsetY = e.clientY - win.offsetTop;
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      win.style.left = (e.clientX - offsetX) + 'px';
-      win.style.top = (e.clientY - offsetY) + 'px';
-    }
-  });
-
-  document.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
-});
-
-// SOUMISSION DISCORD
-function submitReport() {
-  const type = document.getElementById('editor-type').value;
-  const title = document.getElementById('editor-title').value;
-  const itemClass = document.getElementById('editor-class').value;
-  const content = document.getElementById('editor-content').value;
-
-  if (!title || !content) {
-    alert("Veuillez remplir tous les champs.");
-    return;
-  }
-
-  const payload = {
-    embeds: [{
-      title: `[${type}] ${title}`,
-      color: 0xda3633,
-      fields: [
-        { name: "Classe / Niveau", value: itemClass || "N/A" },
-        { name: "Contenu", value: content }
-      ],
-      footer: { text: "SCP OS - Site-43 France" },
-      timestamp: new Date()
-    }]
-  };
-
-  fetch(DISCORD_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).then(res => {
-    alert("Rapport transmis avec succès au Webhook Discord !");
-    if (type === 'SCP') {
-      scpDatabase.unshift({ id: title, name: "Nouveau Rapport", class: itemClass || "Safe", tagClass: "tag-safe", text: content });
-      renderSCPList();
-    }
-  }).catch(err => alert("Erreur lors de l'envoi vers Discord."));
-}
-
-// TERMINAL INTERACTIF
-function handleTerminalInput(e) {
-  if (e.key === 'Enter') {
-    const input = e.target.value.trim().toLowerCase();
-    const output = document.getElementById('terminal-output');
-    output.innerText += `\nadmin@site43:~# ${input}`;
-    
-    if (input === 'help') {
-      output.innerText += `\nCommandes disponibles :
-  - help : affiche ce message
-  - clear : efface l'écran
-  - list : affiche la liste des SCP enregistrés
-  - status : état du site-43
-  - alert : déclenche une simulation d'alerte`;
-    } else if (input === 'clear') {
-      output.innerText = '';
-    } else if (input === 'list') {
-      output.innerText += '\n' + scpDatabase.map(s => `${s.id} - ${s.name}`).join('\n');
-    } else if (input === 'status') {
-      output.innerText += '\n[SITE-43] ÉTAT : NORMAL | CONFINEMENT : 100% | BRÈCHES : 0';
-    } else if (input === 'alert') {
-      output.innerText += '\n⚠️ ALERTE ROUGE : SIMULATION DE BRÈCHE DE CONFINEMENT DÉCLENCHÉE.';
-    } else if (input !== '') {
-      output.innerText += `\nCommande non reconnue : '${input}'`;
-    }
-    
-    e.target.value = '';
-    output.scrollTop = output.scrollHeight;
-  }
-}
-
-// DÉMINEUR
+// MINI-JEU DÉMINEUR
 function initMinesweeper() {
   const grid = document.getElementById('minesweeper-grid');
   grid.innerHTML = '';
@@ -814,28 +844,38 @@ function initMinesweeper() {
     cell.className = 'cell';
     const isMine = Math.random() < 0.15;
     cell.onclick = () => {
-      cell.classList.add('revealed');
       if (isMine) {
-        cell.innerText = '💣';
         cell.style.background = '#da3633';
-        alert('BOOM ! Piege mémétique déclenché !');
+        cell.innerText = '💣';
+        alert("Alerte Mémétique ! Piège déclenché.");
       } else {
+        cell.className = 'cell revealed';
         cell.innerText = '✓';
-        cell.style.color = '#3fb950';
+        xp += 5;
+        saveToStorage();
+        updateGamification();
       }
     };
     grid.appendChild(cell);
   }
 }
 
-// INITIALISATION AU CHARGEMENT
-window.onload = () => {
-  renderSCPList();
-  renderGOIList();
-  renderFIMList();
-  renderReportsList();
-  initMinesweeper();
-};
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+  );
+}
+
+// CONSOLE DEVELOPPEUR CONSOLE HELP
+console.log("%c[COMMANDE SUPPRESSION ADMIN SCP]", "color: #da3633; font-size: 14px; font-weight: bold;");
+console.log(`Tapez Admin("${ADMIN_CODE}", "ID_RAPPORT") ou utilisez la commande 'delete' dans le terminal BASH de la page.`);
+
+// INITIALISATIONS
+renderSCPList();
+renderGOIList();
+renderFIMList();
+renderReportList();
+initMinesweeper();
 </script>
 </body>
 </html>
