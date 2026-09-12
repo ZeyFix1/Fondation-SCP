@@ -1,63 +1,428 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCPNet — Intranet Central Site-43</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCP OS - TERMINAL DU SITE-43</title>
+<style>
+  :root {
+    --bg-color: #0b0e14;
+    --win-bg: #161b22;
+    --win-header: #21262d;
+    --text-color: #c9d1d9;
+    --accent: #da3633;
+    --border: #30363d;
+    --font: 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font);
+    height: 100vh;
+    overflow: hidden;
+    background-image: radial-gradient(#1f242c 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* BUREAU ET ICÔNES */
+  #desktop {
+    width: 100vw;
+    height: calc(100vh - 40px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 20px;
+  }
+
+  .icon {
+    width: 95px;
+    height: 95px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text-color);
+    transition: background 0.2s, border 0.2s;
+  }
+
+  .icon:hover {
+    background-color: rgba(218, 54, 51, 0.15);
+    border-color: var(--accent);
+  }
+
+  .icon-img {
+    font-size: 36px;
+    margin-bottom: 6px;
+  }
+
+  .icon-title {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* BARRE DES TÂCHES */
+  #taskbar {
+    height: 40px;
+    background: #010409;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  .start-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    font-family: var(--font);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .system-status {
+    font-size: 11px;
+    color: #8b949e;
+  }
+
+  /* SYSTÈME DE FENÊTRES */
+  .window {
+    position: absolute;
+    width: 760px;
+    height: 520px;
+    background: var(--win-bg);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.85);
+    display: none;
+    flex-direction: column;
+    z-index: 10;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .win-header {
+    background: var(--win-header);
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .win-title {
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .win-close {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .win-close:hover { color: var(--accent); }
+
+  .win-content {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    user-select: text;
+  }
+
+  /* COMPOSANTS DES ARTICLES ET COMPORTEMENTS INTERNES */
+  .list-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .list-item:hover { background: rgba(255,255,255,0.05); }
+
+  .tag { background: #21262d; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+  .tag-keter { border: 1px solid #da3633; color: #da3633; }
+  .tag-euclid { border: 1px solid #d29922; color: #d29922; }
+  .tag-safe { border: 1px solid #3fb950; color: #3fb950; }
+  .tag-thaumiel { border: 1px solid #a371f7; color: #a371f7; }
+
+  .article-title { font-size: 18px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  .back-btn { background: var(--win-header); color: var(--text-color); border: 1px solid var(--border); padding: 5px 10px; margin-bottom: 12px; cursor: pointer; font-family: var(--font); }
+  .back-btn:hover { border-color: var(--accent); }
+  
+  .fim-card { border-bottom: 1px solid var(--border); padding: 10px 0; }
+  .fim-code { color: var(--accent); font-weight: bold; }
+  .fim-name { font-style: italic; color: #f0f6fc; }
+  .fim-desc { font-size: 12px; color: #8b949e; margin-top: 4px; }
+</style>
 </head>
-<body class="scp-theme">
-  <header>
-    <div class="os-bar">
-      <h1>SCPOS v4.08 — SITE-43 INTRANET</h1>
-      <div id="authStatus"></div>
-    </div>
-    <nav>
-      <a href="index.html" class="active">Accueil</a>
-      <a href="scps.html">Base SCP</a>
-      <a href="departements.html">Départements</a>
-      <a href="mtf.html">FIM / MTF</a>
-      <a href="rapport.html">Base Rapports</a>
-      <a href="redaction.html">Rédaction</a>
-      <a href="console.html">>_ TERMINAL</a>
-    </nav>
-  </header>
+<body>
 
-  <main>
-    <section class="warning-banner">
-      <h2>⚠️ HABILITATION NIVEAU 2 REQUISE</h2>
-      <p>L'accès non autorisé est passible d'une administration d'amnésiques de Classe-A ou d'une neutralisation immédiate. Votre adresse IP ainsi que votre identifiant de session sont enregistrés.</p>
-    </section>
-
-    <section class="intro-section">
-      <h2>PRÉSENTATION DE LA FONDATION</h2>
-      <p>Opérant à l'échelle mondiale, la <strong>Fondation SCP</strong> sécurise, confine et protège l'humanité contre les phénomènes anormaux qui menacent la réalité standard.</p>
-
-      <div class="motto-grid">
-        <div class="dept-card">
-          <h4>SÉCURISER</h4>
-          <p>Intercepter les objets anormaux avant qu'ils ne tombent entre d'autres mains.</p>
-        </div>
-        <div class="dept-card">
-          <h4>CONFINER</h4>
-          <p>Élaborer des procédures de confinement sur mesure dans nos installations sécurisées.</p>
-        </div>
-        <div class="dept-card">
-          <h4>PROTÉGER</h4>
-          <p>Protéger l'humanité des effets dévastateurs de ces entités anormales.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="taskbar">
-    <div class="taskbar-left">
-      <span class="start-btn">SCPSci</span>
-      <span>Réseau : Sécurisé (Crypter v8)</span>
-    </div>
-    <div class="taskbar-right" id="clock">12:00</div>
+<!-- BUREAU INTERACTIF -->
+<div id="desktop">
+  <div class="icon" onclick="openWindow('win-site43')">
+    <div class="icon-img">🏢</div>
+    <div class="icon-title">Site-43</div>
   </div>
 
-  <script src="js/app.js"></script>
+  <div class="icon" onclick="openWindow('win-scp')">
+    <div class="icon-img">📁</div>
+    <div class="icon-title">Base SCP</div>
+  </div>
+
+  <div class="icon" onclick="openWindow('win-fim')">
+    <div class="icon-img">🛡️</div>
+    <div class="icon-title">FIM / MTF</div>
+  </div>
+
+  <div class="icon" onclick="openWindow('win-console')">
+    <div class="icon-img">💻</div>
+    <div class="icon-title">Terminal</div>
+  </div>
+</div>
+
+<!-- BARRE DES TÂCHES DU SYSTÈME -->
+<div id="taskbar">
+  <button class="start-btn">FONDATION OS</button>
+  <div class="system-status">SÉCURITÉ : NIVEAU 3 | SITE-43 (ONTARIO, CA) | FONDATION SCP</div>
+</div>
+
+<!-- FENÊTRE 1 : SITE-43 -->
+<div id="win-site43" class="window" style="top:40px; left:60px;">
+  <div class="win-header">
+    <span class="win-title">DOSSIER INFOS - SITE-43</span>
+    <button class="win-close" onclick="closeWindow('win-site43')">✕</button>
+  </div>
+  <div class="win-content">
+    <h2 class="article-title">SITE-43 : INSTALLATION SOUTERRAINE DU LAC HURON</h2>
+    <p><strong>Emplacement :</strong> Sous le parc provincial Ipperwash, Ontario, Canada.</p>
+    <p><strong>Spécialisation :</strong> Recherche paraphysique, étude mémétique, traitement de la thaumatologie moderne et confinement à faible impact environnemental.</p>
+    <br>
+    <p><strong>Présentation du Site :</strong> Le Site-43 est une installation discrète encastrée sous la surface rocheuse de la côte sud du lac Huron. Il est connu pour son administration structurée en plusieurs sections uniques (Section de l'Acquisition, Section du Confinement, Section Mémétique, etc.). Contrairement aux sites militarisés lourds, le Site-43 privilégie la recherche académique avancée et la rétention d'anomalies de gravité variable.</p>
+    <br>
+    <p><strong>Directrice du Site :</strong> Dr Vivian Lillian Blank</p>
+    <p><strong>Sections Clés :</strong></p>
+    <ul>
+      <li>- <strong>Section des Transcriptions :</strong> Archivage et gestion des données mémétiques.</li>
+      <li>- <strong>Section d'Archéologie :</strong> Étude des anomalies historiques régionales.</li>
+      <li>- <strong>Section de Confinement Humanoïde :</strong> Quartiers adaptés pour entités douées de conscience.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FENÊTRE 2 : BASE SCP (LECTEUR INTÉGRÉ) -->
+<div id="win-scp" class="window" style="top:70px; left:120px;">
+  <div class="win-header">
+    <span class="win-title">BASE DE DONNÉES SCP (INTERNE)</span>
+    <button class="win-close" onclick="closeWindow('win-scp')">✕</button>
+  </div>
+  <div class="win-content" id="scp-content-area">
+    <!-- Contenu dynamique généré via JS -->
+  </div>
+</div>
+
+<!-- FENÊTRE 3 : FIM / MTF -->
+<div id="win-fim" class="window" style="top:100px; left:180px;">
+  <div class="win-header">
+    <span class="win-title">ANNUAIRE DES FORCES D'INTERVENTION MOBILES</span>
+    <button class="win-close" onclick="closeWindow('win-fim')">✕</button>
+  </div>
+  <div class="win-content" id="fim-content-area">
+    <!-- Contenu dynamique généré via JS -->
+  </div>
+</div>
+
+<!-- FENÊTRE 4 : TERMINAL CONSOLE -->
+<div id="win-console" class="window" style="top:130px; left:240px;">
+  <div class="win-header">
+    <span class="win-title">TERMINAL DE COMMANDE</span>
+    <button class="win-close" onclick="closeWindow('win-console')">✕</button>
+  </div>
+  <div class="win-content" style="background:#000; color:#0f0; font-family:monospace;">
+    <p>> SERVEUR PRINCIPAL : SITE-43 CONNECTÉ</p>
+    <p>> PROTOCOLE DE SÉCURITÉ RAISA-43 ACTIF.</p>
+    <p>> TAPEZ 'HELP' POUR AFFICHER LA LISTE DES COMMANDES DISPONIBLES.</p>
+  </div>
+</div>
+
+<script>
+// BASE DE DONNÉES SCP EXTENSIVE INTÉGRÉE
+const scpDatabase = [
+  {
+    id: "SCP-173",
+    name: "La Statue",
+    class: "Euclid",
+    tagClass: "tag-euclid",
+    text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes et la porte doit être verrouillée derrière elles. Deux personnes doivent maintenir un contact visuel direct jusqu'à ce que la cellule soit évacuée et verrouillée.<br><br><b>Description :</b> Construit en béton et en armature d'acier avec des traces de peinture aérosol. SCP-173 est animé et extrêmement hostile. L'objet ne peut pas se déplacer tant qu'il se trouve dans le champ visuel direct d'un individu."
+  },
+  {
+    id: "SCP-096",
+    name: "L'Homme Timide",
+    class: "Euclid",
+    tagClass: "tag-euclid",
+    text: "<b>Procédures de Confinement Spéciales :</b> SCP-096 doit être maintenu dans sa cellule (cube en acier étanche de 5m x 5m x 5m) à tout moment. Des vérifications hebdomadaires pour détecter d'éventuelles fissures ou ouvertures sont obligatoires.<br><br><b>Description :</b> SCP-096 est une créature humanoïde mesurant environ 2,38 mètres de haut. Lorsqu'un individu observe le visage de SCP-096 (directement, via une photo ou une vidéo), la créature entre dans un état de détresse psychologique extrême avant de traquer l'observateur pour le supprimer."
+  },
+  {
+    id: "SCP-682",
+    name: "Le Reptile Difficile à Détruire",
+    class: "Keter",
+    tagClass: "tag-keter",
+    text: "<b>Procédures de Confinement Spéciales :</b> SCP-682 doit être immergé dans un bain d'acide chlorhydrique à 87% remplissant sa cellule de confinement de 5m x 5m x 5m.<br><br><b>Description :</b> SCP-682 est une grande créature d'origine inconnue ressemblant vaguement à un reptile. Il possède une force, une vitesse et des réflexes extrêmement élevés, combinés à une capacité d'adaptation physique et de régénération quasi-infinie."
+  },
+  {
+    id: "SCP-049",
+    name: "Le Médecin de la Peste",
+    class: "Euclid",
+    tagClass: "tag-euclid",
+    text: "<b>Procédures de Confinement Spéciales :</b> Conservé dans une cellule de confinement médicale standard. SCP-049 doit être sédaté avant toute tentative de déplacement.<br><br><b>Description :</b> Entité humanoïde de 1,90 m vêtue des habits d'un médecin de la peste du XVIIe siècle. La robe et le masque font partie intégrante du corps de l'entité. Il affirme vouloir guérir la 'Peste' et transforme les sujets humains en instances mort-vivantes."
+  },
+  {
+    id: "SCP-999",
+    name: "Le Monstre aux Chatouilles",
+    class: "Safe",
+    tagClass: "tag-safe",
+    text: "<b>Procédures de Confinement Spéciales :</b> SCP-999 est autorisé à se déplacer librement dans les installations s'il le souhaite, mais doit rester dans son enclos durant la nuit.<br><br><b>Description :</b> Masse gelatineuse orange translucide de 54 kg. SCP-999 est extrêmement joueur et affectueux. Le contact avec sa surface induit une euphorie immédiate qui guérit la dépression et les traumatismes."
+  },
+  {
+    id: "SCP-5243",
+    name: "La Rupture de 1976",
+    class: "Keter",
+    tagClass: "tag-keter",
+    text: "<b>Procédures de Confinement Spéciales :</b> Protocoles gérés directement par le département de chronologie du Site-43. Une répétition annuelle des événements de 1976 doit être gérée le 8 septembre.<br><br><b>Description :</b> Un événement catastrophique temporel récurrent se produisant au Site-43, provoquant une boucle d'évènements où la destruction originale du site se rejoue partiellement."
+  },
+  {
+    id: "SCP-3000",
+    name: "Ananta",
+    class: "Thaumiel",
+    tagClass: "tag-thaumiel",
+    text: "<b>Procédures de Confinement Spéciales :</b> SCP-3000 est confiné dans la fosse de la mer d'Andaman. Le navire de la Fondation SCPS Ereshkigal supervise la zone.<br><br><b>Description :</b> Une anguille géante d'une longueur estimée entre 600 et 900 kilomètres. Sa présence provoque de graves altérations cognitives et mémétiques. SCP-3000 sécrète la Substance Y, utilisée pour créer les amnésiques de classe supérieure."
+  },
+  {
+    id: "SCP-5000",
+    name: "Pourquoi ?",
+    class: "Safe",
+    tagClass: "tag-safe",
+    text: "<b>Procédures de Confinement Spéciales :</b> L'objet est conservé désactivé dans les archives du Site-06-3.<br><br><b>Description :</b> Une combinaison de combat mécanique avancée conçue par la Fondation SCP. Elle a été retrouvée contenant le cadavre d'un agent et un journal de bord détaillant un futur alternatif où la Fondation avait décidé de détruire toute l'humanité."
+  }
+];
+
+// LISTE COMPLET DES FIM / MTF
+const fimDatabase = [
+  { code: "Alpha-1", name: "La Main Droite du Renard (Red Right Hand)", role: "Rattachée directement au Conseil O5. Utilise du matériel de pointe pour la sécurité interne et l'élimination des traîtres." },
+  { code: "Epsilon-11", name: "Neuf Queues de Renard (Nine-Tailed Fox)", role: "Unité d'urgence déployée dans les sites de la Fondation lors des brèches de confinement majeures." },
+  { code: "Nu-7", name: "Coup de Tonnerre (Hammer Down)", role: "Force militaire lourde (infanterie, blindés, hélicoptères) engagée lors des menaces de brèche de grande ampleur." },
+  { code: "Zeta-9", name: "Les Rats de Taupe (Mole Rats)", role: "Spécialisée dans l'exploration, l'investigation et la sécurisation des espaces confinés ou non-euclidiens." },
+  { code: "Beta-7", name: "Les Nettoyeurs de Chapeaux (Maz Hatters)", role: "Spécialisée dans l'acquisition, le confinement et la décontamination d'anomalies biologiques, chimiques ou radiologiques." },
+  { code: "Eta-10", name: "Ne Voient Pas le Mal (See No Evil)", role: "Confinement et capture des anomalies visuelles, cognito-dangereuses ou mémétiques." },
+  { code: "Gamma-6", name: "Les Deep Feeders", role: "Opérations sous-marines et confinement d'anomalies aquatiques de grande taille." },
+  { code: "Tau-5", name: "Samsara", role: "Escouade constituée de quatre cyborgs immortels créés à partir de la chair d'une divinité tombée." },
+  { code: "Delta-5", name: "Les Chasseurs de Frontières (Front Runners)", role: "Infiltration des Groupes d'Intérêt et interdiction préventive d'anomalies sur le terrain." }
+];
+
+// GENERATION DE LA LISTE DES SCP
+function renderSCPList() {
+  const container = document.getElementById('scp-content-area');
+  let html = '<h3>RÉPERTOIRE DES ANOMALIES</h3><br>';
+  scpDatabase.forEach((scp, index) => {
+    html += `
+      <div class="list-item" onclick="openSCPArticle(${index})">
+        <span><strong>${scp.id}</strong> - ${scp.name}</span>
+        <span class="tag ${scp.tagClass}">${scp.class}</span>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+// AFFICHAGE D'UN ARTICLE SCP
+function openSCPArticle(index) {
+  const scp = scpDatabase[index];
+  const container = document.getElementById('scp-content-area');
+  container.innerHTML = `
+    <button class="back-btn" onclick="renderSCPList()">← Retour au répertoire</button>
+    <h2 class="article-title">${scp.id} : ${scp.name}</h2>
+    <p><strong>Classe d'Anomalie :</strong> <span class="tag ${scp.tagClass}">${scp.class}</span></p><br>
+    <div>${scp.text}</div>
+  `;
+}
+
+// GENERATION DE LA LISTE DES FIM
+function renderFIMList() {
+  const container = document.getElementById('fim-content-area');
+  let html = '<h3>FORCES D\'INTERVENTION MOBILES (FIM / MTF)</h3><br>';
+  fimDatabase.forEach(fim => {
+    html += `
+      <div class="fim-card">
+        <p><span class="fim-code">FIM ${fim.code}</span> — <span class="fim-name">"${fim.name}"</span></p>
+        <p class="fim-desc">${fim.role}</p>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+// GESTION DES FENÊTRES
+function openWindow(id) {
+  document.getElementById(id).style.display = 'flex';
+}
+
+function closeWindow(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// GESTION DU GLISSER-DÉPOSER (DRAG & DROP)
+document.querySelectorAll('.window').forEach(win => {
+  const header = win.querySelector('.win-header');
+  let isDragging = false, startX = 0, startY = 0;
+
+  header.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    
+    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 10);
+    win.style.zIndex = 100;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    win.style.left = (win.offsetLeft + dx) + 'px';
+    win.style.top = (win.offsetTop + dy) + 'px';
+    startX = e.clientX;
+    startY = e.clientY;
+  });
+
+  document.addEventListener('mouseup', () => isDragging = false);
+});
+
+// INITIALISATION
+renderSCPList();
+renderFIMList();
+</script>
 </body>
 </html>
