@@ -2,27 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Fondation SCP - Base des Rapports</title>
+  <title>Fondation SCP - Archives des Rapports</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="scp-theme">
   <header>
-    <h1>ARCHIVES DES RAPPORTS DE LA FONDATION</h1>
-    <div id="authStatus"></div>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="scps.html">Base SCP</a>
-      <a href="departements.html">Départements</a>
-      <a href="mtf.html">FIM / MTF</a>
-      <a href="rapport.html" class="active">Base Rapports</a>
-      <a href="redaction.html">Rédaction</a>
-      <a href="console.html">>_ TERMINAL</a>
-    </nav>
+    <h1>ARCHIVES TERMINAL DE LA FONDATION</h1>
+    <!-- Zone de connexion Admin pour Zeyfix -->
+    <div id="authStatus">
+      <button onclick="loginAsZeyfix()">Connexion Administration (Zeyfix)</button>
+    </div>
   </header>
 
   <main>
     <h2>BASE DE DONNÉES EN LIGNE</h2>
     
+    <!-- Filtres par catégorie -->
     <div class="filters">
       <button onclick="filterReports('All')">Tous</button>
       <button onclick="filterReports('Scientifique')">Scientifique</button>
@@ -31,14 +26,11 @@
       <button onclick="filterReports('FIM')">FIM</button>
     </div>
 
+    <!-- Liste dynamique des rapports -->
     <div id="reportsContainer">
-      <!-- Les rapports injectés par le JS s'afficheront ici -->
+      <!-- Les rapports envoyés apparaîtront ici via JS -->
     </div>
   </main>
-
-  <footer>
-    <p>&copy; Fondation SCP — Système d'archives sécurisé.</p>
-  </footer>
 
   <script src="js/app.js"></script>
 </body>
