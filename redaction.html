@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fondation SCP - Rédaction de Rapport</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="scp-theme">
+  <header>
+    <h1>FONDATION SCP - BASE DE DONNÉES INTRA-SITE</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="departements.html">Départements</a>
+      <a href="mtf.html">FIM / MTF</a>
+      <a href="rapports.html">Base des Rapports</a>
+      <a href="redaction.html" class="active">Nouveau Rapport</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>[CLASSIFIÉ] NOUVEAU RAPPORT INTERNE</h2>
+    
+    <form id="scpReportForm">
+      <!-- Catégorie du Rapport -->
+      <div class="form-group">
+        <label for="category">Catégorie du rapport :</label>
+        <select id="category" required>
+          <option value="Scientifique">Scientifique</option>
+          <option value="Securite">Sécurité</option>
+          <option value="Administratif">Administratif</option>
+          <option value="FIM">FIM (Force d'Intervention Mobile)</option>
+        </select>
+      </div>
+
+      <!-- Agent / Chercheur -->
+      <div class="form-group">
+        <label for="author">Nom / Prénom ou Matricule :</label>
+        <input type="text" id="author" placeholder="ex: Dr. Zeyfix / Agent #4082" required>
+      </div>
+
+      <!-- Intitulé -->
+      <div class="form-group">
+        <label for="reportTitle">Nom / Type du rapport :</label>
+        <input type="text" id="reportTitle" placeholder="ex: Rapport d'incident SCP-173-B" required>
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <label for="reportDate">Date :</label>
+        <input type="date" id="reportDate" required>
+      </div>
+
+      <!-- Contenu -->
+      <div class="form-group">
+        <label for="content">Contenu du rapport :</label>
+        <textarea id="content" rows="10" placeholder="Insérer le texte du rapport..." required></textarea>
+      </div>
+
+      <!-- Pièce jointe (facultatif) -->
+      <div class="form-group">
+        <label for="attachment">Pièce jointe (URL ou image - facultatif) :</label>
+        <input type="url" id="attachment" placeholder="https://..." >
+      </div>
+
+      <!-- Informations supplémentaires -->
+      <div class="form-group">
+        <label for="extraInfo">Informations supplémentaires / Notes de sécurité :</label>
+        <textarea id="extraInfo" rows="4" placeholder="Accès restreint aux accréditations Niveau 3..."></textarea>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="button-group">
+        <button type="button" id="saveDraftBtn" onclick="saveDraft()">💾 Sauvegarder en brouillon</button>
+        <button type="submit" id="submitBtn">📤 Envoyer le rapport</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
