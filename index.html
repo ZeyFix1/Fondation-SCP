@@ -129,7 +129,7 @@
 
   .system-status { font-size: 11px; color: #8b949e; font-family: var(--font-mono); }
 
-  /* FENÊTRES FLOTTANTES INTRACTIVES */
+  /* FENÊTRES FLOTTANTES INTERACTIVES */
   .window {
     position: absolute;
     width: 850px;
@@ -439,7 +439,7 @@
   </div>
 </div>
 
-<!-- FENÊTRE 4 : BASE SCP (SANS NOTATIONS) -->
+<!-- FENÊTRE 4 : BASE SCP -->
 <div id="win-scp" class="window" style="top:100px; left:180px;">
   <div class="win-header">
     <span class="win-title">📁 BASE DE DONNÉES SCP (FICHES ANOMALES)</span>
@@ -450,7 +450,7 @@
   <div class="win-content" id="scp-content-area"></div>
 </div>
 
-<!-- FENÊTRE 5 : FIM / MTF COMPLETE (110+ UNITES) -->
+<!-- FENÊTRE 5 : FIM / MTF -->
 <div id="win-fim" class="window" style="top:120px; left:220px;">
   <div class="win-header">
     <span class="win-title">🛡️ FORCES D'INTERVENTION MOBILES (FIM / MTF)</span>
@@ -551,7 +551,7 @@ const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/154827533886855580
 let scpDatabase = [
   { id: "SCP-173", name: "La Sculpture", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> Statue animée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
   { id: "••|•••••|••|•", name: "(SCP-2521)", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité ne pouvant être décrite que par des pictogrammes. Toute description textuelle ou orale entraîne la manifestation et le kidnapping du support par l'entité." },
-  { id: "SCP-___-J", name: "Le Procrastinateur", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Pierre provoquant une procrastinaiton extrême chez quiconque essaie d'écrire son rapport..." },
+  { id: "SCP-___-J", name: "Le Procrastinateur", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Pierre provoquant une procrastination extrême chez quiconque essaie d'écrire son rapport..." },
   { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Humanoïde extrêmement grand et mince. Si quelqu'un observe son visage (directement ou en photo/vidéo), il entre dans une crise de rage incontrôlable et traque l'observateur pour le tuer." },
   { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé en permanence dans de l'acide chlorhydrique à 87%.<br><br><b>Description :</b> Grande créature reptilienne extrêmement hostile avec une capacité de régénération et d'adaptation quasi-illimitée." },
   { id: "SCP-2317", name: "Une Porte vers une Autre Dimension", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Entité cosmique captive derrière une porte interdimensionnelle retenue par des chaînes qui se brisent une à une." },
@@ -586,7 +586,7 @@ const goiList = [
   "L'Université d'Alexylva", "Vikander-Kneed Technical Media"
 ];
 
-// BASE DE DONNÉES COMPLÈTE DES FIM (110+ UNITÉS)
+// BASE DE DONNÉES COMPLÈTE DES FIM
 let fimDatabase = [
   { code: "Alpha-1", name: "Les Bras Droits", role: "Rattachée directement au Conseil O5 pour les opérations les plus confidentielles." },
   { code: "Alpha-4", name: "Pony Express", role: "Infiltration des services postaux et de livraison pour intercepter les objets anormaux." },
@@ -650,55 +650,114 @@ function renderGOIList() {
 
 function renderFIMList() {
   const container = document.getElementById('fim-content-area');
-  let html = '<h3>FORCES D'INTERVENTION MOBILES (' + fimDatabase.length + ' UNITÉS)</h3><br>';
+  let html = `<h3>FORCES D'INTERVENTION MOBILES (${fimDatabase.length} UNITÉS)</h3><br>`;
   fimDatabase.forEach(fim => {
-    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e; margin-top:2px;">${fim.role}</p></div>`;
+    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;">
+      <strong style="color:var(--accent);">${fim.code} - "${fim.name}"</strong>
+      <p style="font-size:12px; color:#8b949e;">${fim.role}</p>
+    </div>`;
   });
   container.innerHTML = html;
 }
 
 function renderReportsList() {
   const container = document.getElementById('reports-content-area');
-  let html = '<h3>ARCHIVES DES RAPPORTS DU SITE-43</h3><br>';
+  let html = '<h3>RAPPORTS D\'INCIDENTS REGISTRÉS</h3><br>';
   reportDatabase.forEach(rep => {
-    html += `<div style="border:1px solid var(--border); border-radius:4px; padding:10px; margin-bottom:10px; background:#0d1117;"><strong style="color:var(--accent);">${rep.title}</strong> <span style="font-size:10px; color:#8b949e;">[${rep.date}]</span><p style="font-size:11px; font-style:italic;">Auteur: ${rep.author}</p><p style="margin-top:6px;">${rep.text}</p></div>`;
+    html += `<div style="background:#0d1117; border:1px solid var(--border); padding:10px; margin-bottom:8px; border-radius:4px;">
+      <h4 style="color:var(--accent);">${rep.title}</h4>
+      <small style="color:#8b949e;">Auteur: ${rep.author} | Date: ${rep.date}</small>
+      <p style="margin-top:6px;">${rep.text}</p>
+    </div>`;
   });
   container.innerHTML = html;
 }
 
-// TRANSMISSION WEBHOOK DISCORD
+// GESTION DES FENÊTRES
+let topZIndex = 100;
+
+function openWindow(id) {
+  const win = document.getElementById(id);
+  win.style.display = 'flex';
+  topZIndex++;
+  win.style.zIndex = topZIndex;
+  updateTaskbar();
+}
+
+function closeWindow(id) {
+  document.getElementById(id).style.display = 'none';
+  updateTaskbar();
+}
+
+function updateTaskbar() {
+  const container = document.getElementById('taskbar-items');
+  container.innerHTML = '';
+  document.querySelectorAll('.window').forEach(win => {
+    if (win.style.display === 'flex') {
+      const title = win.querySelector('.win-title').innerText;
+      const tab = document.createElement('div');
+      tab.className = 'taskbar-tab active';
+      tab.innerText = title.split('-')[0];
+      tab.onclick = () => {
+        topZIndex++;
+        win.style.zIndex = topZIndex;
+      };
+      container.appendChild(tab);
+    }
+  });
+}
+
+// GLISSER-DÉPOSER DES FENÊTRES
+document.querySelectorAll('.window').forEach(win => {
+  const header = win.querySelector('.win-header');
+  let isDragging = false;
+  let offsetX = 0, offsetY = 0;
+
+  win.addEventListener('mousedown', () => {
+    topZIndex++;
+    win.style.zIndex = topZIndex;
+  });
+
+  header.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - win.offsetLeft;
+    offsetY = e.clientY - win.offsetTop;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      win.style.left = (e.clientX - offsetX) + 'px';
+      win.style.top = (e.clientY - offsetY) + 'px';
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+});
+
+// SOUMISSION DISCORD
 function submitReport() {
   const type = document.getElementById('editor-type').value;
   const title = document.getElementById('editor-title').value;
-  const cls = document.getElementById('editor-class').value;
+  const itemClass = document.getElementById('editor-class').value;
   const content = document.getElementById('editor-content').value;
 
-  if(!title || !content) {
-    alert("Veuillez remplir le titre et le contenu.");
+  if (!title || !content) {
+    alert("Veuillez remplir tous les champs.");
     return;
-  }
-
-  if(type === "SCP") {
-    scpDatabase.unshift({ id: title, name: "Entrée Utilisateur", class: cls || "Euclid", tagClass: "tag-euclid", text: content });
-    renderSCPList();
-  } else if(type === "FIM") {
-    fimDatabase.unshift({ code: title, name: cls || "Unité Spéciale", role: content });
-    renderFIMList();
-  } else {
-    reportDatabase.unshift({ title: title, author: "Terminal Utilisateur", date: new Date().toISOString().split('T')[0], text: content });
-    renderReportsList();
   }
 
   const payload = {
     embeds: [{
-      title: `[SITE-43 FRANCE] TRANSMISSION DOCUMENT : ${type}`,
-      color: 14300723,
+      title: `[${type}] ${title}`,
+      color: 0xda3633,
       fields: [
-        { name: "Titre / Identifiant", value: title, inline: true },
-        { name: "Classe / Info", value: cls || "N/A", inline: true },
+        { name: "Classe / Niveau", value: itemClass || "N/A" },
         { name: "Contenu", value: content }
       ],
-      footer: { text: "SCP OS - fondationscp.wikidot.com" }
+      footer: { text: "SCP OS - Site-43 France" },
+      timestamp: new Date()
     }]
   };
 
@@ -706,114 +765,77 @@ function submitReport() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  }).then(() => alert("Rapport enregistré et transmis au Webhook Discord !"))
-    .catch(() => alert("Enregistré localement."));
-
-  document.getElementById('editor-title').value = "";
-  document.getElementById('editor-content').value = "";
+  }).then(res => {
+    alert("Rapport transmis avec succès au Webhook Discord !");
+    if (type === 'SCP') {
+      scpDatabase.unshift({ id: title, name: "Nouveau Rapport", class: itemClass || "Safe", tagClass: "tag-safe", text: content });
+      renderSCPList();
+    }
+  }).catch(err => alert("Erreur lors de l'envoi vers Discord."));
 }
 
 // TERMINAL INTERACTIF
 function handleTerminalInput(e) {
   if (e.key === 'Enter') {
-    const input = e.target.value.trim();
+    const input = e.target.value.trim().toLowerCase();
     const output = document.getElementById('terminal-output');
-    output.innerText += `\nadmin@site43:~# ${input}\n`;
-
-    const cmd = input.toLowerCase();
-    if (cmd === 'help') {
-      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Compte et affiche les anomalies\n - fim : Liste les FIM\n - clear : Efface l'écran\n - sendlog <texte> : Transmet un log au Webhook Discord\n - status : État du réseau du Site-43";
-    } else if (cmd === 'clear') {
-      output.innerText = "";
-    } else if (cmd === 'scp') {
-      output.innerText += `Total SCPs : ${scpDatabase.length}\n`;
-      scpDatabase.slice(0, 5).forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
-    } else if (cmd === 'fim') {
-      output.innerText += `Total FIMs : ${fimDatabase.length}\n`;
-    } else if (cmd === 'status') {
-      output.innerText += "STATUT : OPERATIONNEL | SITE-43 FRANCE | SERVEURS FONDATIONSCP OK";
-    } else if (cmd.startsWith('sendlog ')) {
-      const msg = input.replace('sendlog ', '');
-      fetch(DISCORD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: `[LOG CONSOLE ADMIN SITE-43] : ${msg}` })
-      });
-      output.innerText += "Log transmis sur Discord.";
-    } else {
-      output.innerText += `Commande inconnue: '${input}'. Tapez 'help'.`;
+    output.innerText += `\nadmin@site43:~# ${input}`;
+    
+    if (input === 'help') {
+      output.innerText += `\nCommandes disponibles :
+  - help : affiche ce message
+  - clear : efface l'écran
+  - list : affiche la liste des SCP enregistrés
+  - status : état du site-43
+  - alert : déclenche une simulation d'alerte`;
+    } else if (input === 'clear') {
+      output.innerText = '';
+    } else if (input === 'list') {
+      output.innerText += '\n' + scpDatabase.map(s => `${s.id} - ${s.name}`).join('\n');
+    } else if (input === 'status') {
+      output.innerText += '\n[SITE-43] ÉTAT : NORMAL | CONFINEMENT : 100% | BRÈCHES : 0';
+    } else if (input === 'alert') {
+      output.innerText += '\n⚠️ ALERTE ROUGE : SIMULATION DE BRÈCHE DE CONFINEMENT DÉCLENCHÉE.';
+    } else if (input !== '') {
+      output.innerText += `\nCommande non reconnue : '${input}'`;
     }
-
+    
     e.target.value = '';
     output.scrollTop = output.scrollHeight;
   }
 }
 
-// MINI JEU : DEMINEUR
+// DÉMINEUR
 function initMinesweeper() {
   const grid = document.getElementById('minesweeper-grid');
   grid.innerHTML = '';
-  for(let i = 0; i < 32; i++) {
+  for (let i = 0; i < 64; i++) {
     const cell = document.createElement('div');
     cell.className = 'cell';
-    const isBomb = Math.random() < 0.2;
+    const isMine = Math.random() < 0.15;
     cell.onclick = () => {
-      if(isBomb) {
+      cell.classList.add('revealed');
+      if (isMine) {
         cell.innerText = '💣';
         cell.style.background = '#da3633';
-        alert("Alerte ! Danger Mémétique déclenché !");
+        alert('BOOM ! Piege mémétique déclenché !');
       } else {
         cell.innerText = '✓';
-        cell.classList.add('revealed');
+        cell.style.color = '#3fb950';
       }
     };
     grid.appendChild(cell);
   }
 }
 
-// FENÊTRES ET DRAG & DROP
-function openWindow(id) { 
-  const win = document.getElementById(id);
-  win.style.display = 'flex';
-  bringToFront(win);
-}
-
-function closeWindow(id) { 
-  document.getElementById(id).style.display = 'none'; 
-}
-
-function bringToFront(win) {
-  document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
-  win.style.zIndex = 1000;
-}
-
-document.querySelectorAll('.window').forEach(win => {
-  const header = win.querySelector('.win-header');
-  let isDragging = false, startX = 0, startY = 0;
-  
-  win.addEventListener('mousedown', () => bringToFront(win));
-
-  header.addEventListener('mousedown', (e) => {
-    isDragging = true; 
-    startX = e.clientX - win.offsetLeft; 
-    startY = e.clientY - win.offsetTop;
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    win.style.left = (e.clientX - startX) + 'px';
-    win.style.top = (e.clientY - startY) + 'px';
-  });
-
-  document.addEventListener('mouseup', () => isDragging = false);
-});
-
-// INITIALISATIONS
-renderSCPList();
-renderGOIList();
-renderFIMList();
-renderReportsList();
-initMinesweeper();
+// INITIALISATION AU CHARGEMENT
+window.onload = () => {
+  renderSCPList();
+  renderGOIList();
+  renderFIMList();
+  renderReportsList();
+  initMinesweeper();
+};
 </script>
 </body>
 </html>
