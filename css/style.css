@@ -1,124 +1,368 @@
-/* Style Sombre Terminal SCP */
-body.scp-theme {
-  background-color: #0d0d0d;
-  color: #dcdcdc;
-  font-family: 'Courier New', Courier, monospace;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-os: #080b10;
+  --panel-bg: rgba(18, 24, 38, 0.75);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --accent-red: #ff3344;
+  --accent-green: #00ff66;
+  --text-main: #e6edf3;
+  --text-dim: #8b949e;
+  --glow-red: rgba(255, 51, 68, 0.25);
+  --glow-green: rgba(0, 255, 102, 0.2);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body.scp-theme {
+  background: var(--bg-os) radial-gradient(circle at 50% 20%, #111827 0%, #080b10 100%);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding-bottom: 70px;
+  min-height: 100vh;
+}
+
+/* Animations globale */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header & Navigation OS */
 header {
-  background-color: #1a1a1a;
-  border-bottom: 2px solid #a00000;
-  padding: 1rem;
-  text-align: center;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--panel-border);
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.os-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
 header h1 {
-  color: #e50914;
-  margin: 0 0 10px 0;
-  font-size: 1.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
   letter-spacing: 2px;
+  margin: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header h1::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-red);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-red);
+}
+
+#authStatus button {
+  background: rgba(255, 51, 68, 0.15);
+  color: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.25s ease;
+}
+
+#authStatus button:hover {
+  background: var(--accent-red);
+  color: #fff;
+  box-shadow: 0 0 15px var(--glow-red);
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 nav a {
-  color: #aaaaaa;
+  color: var(--text-dim);
   text-decoration: none;
-  margin: 0 10px;
-  padding: 5px 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  font-family: 'Fira Code', monospace;
   border: 1px solid transparent;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.02);
 }
 
-nav a:hover, nav a.active {
-  color: #ffffff;
-  border-color: #a00000;
-  background-color: #2a0000;
+nav a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--panel-border);
 }
 
+nav a.active {
+  color: #fff;
+  background: rgba(255, 51, 68, 0.15);
+  border-color: var(--accent-red);
+  box-shadow: 0 0 10px var(--glow-red);
+}
+
+/* Main Container (Fractions style Fenêtre OS) */
 main {
   max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 15px;
+  margin: 30px auto;
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  padding: 35px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-h2, h3 {
-  color: #a00000;
-  border-bottom: 1px dashed #444;
-  padding-bottom: 5px;
+h2 {
+  font-family: 'Fira Code', monospace;
+  color: #fff;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 12px;
+  font-size: 1.2rem;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+/* Bannière d'avertissement */
 .warning-banner {
-  background-color: #330000;
-  border: 1px solid #ff0000;
-  padding: 15px;
-  margin-bottom: 20px;
+  border: 1px solid rgba(255, 51, 68, 0.4);
+  background: rgba(255, 51, 68, 0.08);
+  border-radius: 8px;
+  padding: 20px;
   text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
 }
 
 .warning-banner h2 {
-  color: #ff3333;
-  margin-top: 0;
+  border: none;
+  color: var(--accent-red);
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 8px;
 }
 
-.motto-grid {
+/* Grilles & Cartes */
+.motto-grid, .scp-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
   margin-top: 20px;
 }
 
-.motto-card, .dept-card, .mtf-card {
-  background-color: #141414;
-  border: 1px solid #333;
-  border-left: 4px solid #a00000;
-  padding: 15px;
-  margin-bottom: 15px;
+.dept-card, .mtf-card, .report-card, .scp-card {
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
-.dept-category, .mtf-section {
-  margin-bottom: 30px;
+.dept-card:hover, .mtf-card:hover, .scp-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
+/* Badges & Censures */
+.censor {
+  background: #000;
+  color: #000;
+  user-select: none;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.censor:hover, .censor.revealed {
+  background: rgba(255, 51, 68, 0.2);
+  color: var(--accent-red);
+}
+
+.class-badge {
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+  border-radius: 4px;
+  float: right;
+  letter-spacing: 1px;
+}
+
+.class-badge.safe { background: rgba(46, 160, 67, 0.2); color: #3fb950; border: 1px solid #2ea043; }
+.class-badge.euclid { background: rgba(210, 153, 34, 0.2); color: #d29922; border: 1px solid #d29922; }
+.class-badge.keter { background: rgba(255, 51, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
 
 /* Formulaires */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
-  color: #ff6666;
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input, .form-group select, .form-group textarea, .search-box input {
   width: 100%;
-  padding: 8px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  padding: 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  background: rgba(8, 11, 16, 0.8);
   color: #fff;
-  font-family: inherit;
-  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-red);
+  box-shadow: 0 0 10px var(--glow-red);
 }
 
 .button-group button, .filters button {
-  background-color: #2a0000;
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  border: 1px solid #a00000;
-  padding: 10px 15px;
+  border: 1px solid var(--panel-border);
+  padding: 10px 18px;
+  font-family: 'Fira Code', monospace;
+  border-radius: 6px;
   cursor: pointer;
-  font-family: inherit;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
 }
 
 .button-group button:hover, .filters button:hover {
-  background-color: #ff0000;
-  color: #000;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.button-group button#submitBtn {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.button-group button#submitBtn:hover {
+  box-shadow: 0 0 15px var(--glow-red);
+}
+
+/* TERMINAL OS MODE */
+body.console-mode main {
+  border-color: rgba(0, 255, 102, 0.3);
+  box-shadow: 0 0 30px var(--glow-green);
+}
+
+.console-container {
+  font-family: 'Fira Code', monospace;
+  position: relative;
+}
+
+#terminalOutput {
+  height: 380px;
+  overflow-y: auto;
+  border-bottom: 1px solid var(--panel-border);
+  margin-bottom: 15px;
+  padding-right: 10px;
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--glow-green);
+  line-height: 1.5;
+}
+
+.command-line {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: var(--accent-green);
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+#cliInput {
+  background: transparent;
+  border: none;
+  color: var(--accent-green);
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+}
+
+/* Barre des tâches OS (Windows SCP) */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  z-index: 1000;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.start-btn {
+  background: rgba(255, 51, 68, 0.2);
+  color: #fff;
+  border: 1px solid var(--accent-red);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
 footer {
   text-align: center;
-  padding: 20px;
-  border-top: 1px solid #222;
+  font-family: 'Fira Code', monospace;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-dim);
+  margin: 30px 0;
 }
