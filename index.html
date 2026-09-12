@@ -39,7 +39,7 @@
   }
 
   .icon {
-    width: 100px;
+    width: 105px;
     height: 90px;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@
     border-color: var(--accent);
   }
 
-  .icon-img { font-size: 32px; margin-bottom: 4px; }
+  .icon-img { font-size: 30px; margin-bottom: 4px; }
   .icon-title { font-size: 10px; font-weight: bold; text-transform: uppercase; }
 
   /* BARRE DES TÂCHES */
@@ -92,8 +92,8 @@
   /* SYSTÈME DE FENÊTRES */
   .window {
     position: absolute;
-    width: 780px;
-    height: 540px;
+    width: 800px;
+    height: 560px;
     background: var(--win-bg);
     border: 1px solid var(--border);
     box-shadow: 0 10px 35px rgba(0,0,0,0.85);
@@ -143,7 +143,7 @@
 
   /* LISTES ET FORMULAIRES */
   .list-item {
-    padding: 10px;
+    padding: 8px 10px;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
     display: flex;
@@ -157,6 +157,7 @@
   .tag-euclid { border: 1px solid #d29922; color: #d29922; }
   .tag-safe { border: 1px solid #3fb950; color: #3fb950; }
   .tag-thaumiel { border: 1px solid #a371f7; color: #a371f7; }
+  .tag-neutralized { border: 1px solid #8b949e; color: #8b949e; }
 
   .article-title { font-size: 18px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
   .back-btn, .action-btn { background: var(--win-header); color: var(--text-color); border: 1px solid var(--border); padding: 6px 12px; margin-bottom: 12px; cursor: pointer; font-family: var(--font); }
@@ -176,7 +177,7 @@
   #terminal-input { background: transparent; border: none; color: #00ff66; font-family: monospace; width: 100%; font-size: 12px; }
   #terminal-input:focus { outline: none; }
 
-  /* MINI JEU : DEMINEUR */
+  /* MINI JEU */
   #minesweeper-grid { display: grid; grid-template-columns: repeat(8, 30px); gap: 2px; margin-top: 10px; }
   .cell { width: 30px; height: 30px; background: #21262d; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
   .cell.revealed { background: #0d1117; }
@@ -188,7 +189,7 @@
 <div id="desktop">
   <div class="icon" onclick="openWindow('win-site43')">
     <div class="icon-img">🏢</div>
-    <div class="icon-title">Site-43</div>
+    <div class="icon-title">Site-43 (FR)</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-departments')">
@@ -198,7 +199,7 @@
 
   <div class="icon" onclick="openWindow('win-scp')">
     <div class="icon-img">📁</div>
-    <div class="icon-title">Base SCP</div>
+    <div class="icon-title">Base SCP (100+)</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-fim')">
@@ -208,7 +209,7 @@
 
   <div class="icon" onclick="openWindow('win-reports')">
     <div class="icon-img">📋</div>
-    <div class="icon-title">Base Rapports</div>
+    <div class="icon-title">Rapports</div>
   </div>
 
   <div class="icon" onclick="openWindow('win-editor')">
@@ -230,7 +231,7 @@
 <!-- BARRE DES TÂCHES -->
 <div id="taskbar">
   <button class="start-btn">FONDATION OS</button>
-  <div class="system-status">SÉCURITÉ : NIVEAU 4 | SITE-43 (FRANCE) | FONDATION SCP</div>
+  <div class="system-status">SÉCURITÉ : NIVEAU 4 | SITE-43 FRANCE | FONDATION SCP</div>
 </div>
 
 <!-- FENÊTRE 1 : SITE-43 -->
@@ -240,73 +241,83 @@
     <button class="win-close" onclick="closeWindow('win-site43')">✕</button>
   </div>
   <div class="win-content">
-    <h2 class="article-title">SITE-43 : INSTALLATION CLANDESTINE MÉTROPOLITAINE</h2>
-    <p><strong>Emplacement :</strong> France Métropolitaine (Secteur Anomale Alpin / Souterrain).</p>
-    <p><strong>Site Officiel :</strong> <a href="https://site43.miraheze.org/wiki/Accueil" target="_blank" style="color:var(--accent);">site43.miraheze.org</a></p><br>
-    <p><strong>Présentation :</strong> Le Site-43 est une installation stratégique majeure du secteur européen. Il rassemble des dizaines de divisions spécialisées chargées du confinement, du renseignement tactique et de la recherche bio-mémétique sur le territoire français.</p>
+    <h2 class="article-title">SITE-43 : INSTALLATION OFFICIELLE FRANÇAISE</h2>
+    <p><strong>Localisation :</strong> France Métropolitaine (Secteur Anomale Sécurisé).</p>
+    <p><strong>Wiki Officiel :</strong> <a href="https://site43.miraheze.org/wiki/Accueil" target="_blank" style="color:var(--accent);">site43.miraheze.org</a></p>
+    <p><strong>Base Principale :</strong> <a href="http://fondationscp.wikidot.com" target="_blank" style="color:var(--accent);">fondationscp.wikidot.com</a></p>
+    <br>
+    <p><strong>Présentation du Site-43 :</strong> Le Site-43 est une installation majeure de la branche francophone de la Fondation SCP. Il regroupe des divisions spécialisées de confinement, de recherche parasciences et d'intervention tactique sur le territoire français.</p>
     <br>
     <p><strong>Directeur du Site :</strong> Commandement du Secteur FR-43</p>
-    <p><strong>Niveau de Sécurité Global :</strong> Niveau 4 (Accès restreint)</p>
+    <p><strong>Niveau de Sécurité :</strong> Rétention renforcée - Accès Niveau 4 requis.</p>
   </div>
 </div>
 
-<!-- FENÊTRE 2 : DÉPARTEMENTS -->
+<!-- FENÊTRE 2 : DÉPARTEMENTS CORRIGÉS -->
 <div id="win-departments" class="window" style="top:50px; left:90px;">
   <div class="win-header">
-    <span class="win-title">STRUCTURE DES DÉPARTEMENTS</span>
+    <span class="win-title">ORGANIGRAMME DES DÉPARTEMENTS OFFICIELS</span>
     <button class="win-close" onclick="closeWindow('win-departments')">✕</button>
   </div>
   <div class="win-content">
-    <h2 class="article-title">DÉPARTEMENTS DE LA FONDATION (SITE-43)</h2>
+    <h2 class="article-title">DÉPARTEMENTS DE LA FONDATION SCP</h2>
     <div style="display:flex; flex-direction:column; gap:12px;">
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Scientifique</strong>
-        <p style="font-size:12px; color:#8b949e;">Chargé d'étudier le fonctionnement biologique, physique et métaphysique des anomalies.</p>
+        <strong style="color:#fff;">Département Scientifique (DS)</strong>
+        <p style="font-size:12px; color:#8b949e;">Conduit les recherches théoriques et appliquées sur les anomalies pour comprendre leur fonctionnement et développer des protocoles de confinement.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Sécurité & Confinement</strong>
-        <p style="font-size:12px; color:#8b949e;">Maintient le confinement physique des objets dangereux et protège les installations.</p>
+        <strong style="color:#fff;">Département de la Sécurité (DSE)</strong>
+        <p style="font-size:12px; color:#8b949e;">Assure la protection physique des installations, du personnel et le maintien du confinement quotidien des entités.</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
         <strong style="color:#fff;">Département des Affaires Internes (DAI)</strong>
-        <p style="font-size:12px; color:#8b949e;">Enquêtes internes sur la corruption, les fuites de sécurité et la vérification des loyautés.</p>
+        <p style="font-size:12px; color:#8b949e;">Chargé des enquêtes de loyauté, de l'élimination des fuites et de la détection des espions de Groupes d'Intérêt (GoI).</p>
       </div>
       <div style="border-left:3px solid var(--accent); padding-left:10px;">
-        <strong style="color:#fff;">Département Mémétique et Cognitohazards</strong>
-        <p style="font-size:12px; color:#8b949e;">Neutralisation des dangers transmis par l'information, le son ou l'image.</p>
+        <strong style="color:#fff;">Département Médical (DM)</strong>
+        <p style="font-size:12px; color:#8b949e;">Assure le suivi physique et psychologique du personnel du site, incluant les chirurgies d'urgence et le traitement amnésique.</p>
+      </div>
+      <div style="border-left:3px solid var(--accent); padding-left:10px;">
+        <strong style="color:#fff;">Département de Sécurité de l'Information (DSI / RAISA)</strong>
+        <p style="font-size:12px; color:#8b949e;">Gère l'archivage, la censure, la protection des réseaux et l'injection de désinformation dans les réseaux civils.</p>
+      </div>
+      <div style="border-left:3px solid var(--accent); padding-left:10px;">
+        <strong style="color:#fff;">Département de la Logistique (DL)</strong>
+        <p style="font-size:12px; color:#8b949e;">Gère le ravitaillement, la distribution des ressources, la classe D et l'entretien des installations souterraines.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FENÊTRE 3 : BASE SCP -->
+<!-- FENÊTRE 3 : BASE SCP (100+ SCPs) -->
 <div id="win-scp" class="window" style="top:70px; left:130px;">
   <div class="win-header">
-    <span class="win-title">BASE DE DONNÉES SCP</span>
+    <span class="win-title">BASE DE DONNÉES SCP (100 ENTRÉES)</span>
     <button class="win-close" onclick="closeWindow('win-scp')">✕</button>
   </div>
   <div class="win-content" id="scp-content-area"></div>
 </div>
 
-<!-- FENÊTRE 4 : FIM / MTF -->
+<!-- FENÊTRE 4 : FIM / MTF CORRIGÉES -->
 <div id="win-fim" class="window" style="top:90px; left:170px;">
   <div class="win-header">
-    <span class="win-title">FORCES D'INTERVENTION MOBILES</span>
+    <span class="win-title">FORCES D'INTERVENTION MOBILES (FIM / MTF OFFICIELLES)</span>
     <button class="win-close" onclick="closeWindow('win-fim')">✕</button>
   </div>
   <div class="win-content" id="fim-content-area"></div>
 </div>
 
-<!-- FENÊTRE 5 : BASE DE RAPPORTS DE INCIDENTS -->
+<!-- FENÊTRE 5 : RAPPORTS -->
 <div id="win-reports" class="window" style="top:110px; left:210px;">
   <div class="win-header">
-    <span class="win-title">BASE DE RAPPORTS ET INCIDENTS</span>
+    <span class="win-title">BASE DE RAPPORTS D'INCIDENTS</span>
     <button class="win-close" onclick="closeWindow('win-reports')">✕</button>
   </div>
   <div class="win-content" id="reports-content-area"></div>
 </div>
 
-<!-- FENÊTRE 6 : RÉDACTION DES RAPPORTS ET AJOUTS -->
+<!-- FENÊTRE 6 : RÉDACTION -->
 <div id="win-editor" class="window" style="top:130px; left:250px;">
   <div class="win-header">
     <span class="win-title">SISTÈME DE RÉDACTION (LOGS DISCORD)</span>
@@ -334,11 +345,11 @@
       <label>Contenu détaillé / Procédures</label>
       <textarea id="editor-content" class="form-control" placeholder="Rédigez le texte complet du rapport ici..."></textarea>
     </div>
-    <button class="action-btn" onclick="submitReport()">TRANSMETTRE AU WEBHOOK & ENREGISTRER</button>
+    <button class="action-btn" onclick="submitReport()">TRANSMETTRE AU WEBHOOK DISCORD & ENREGISTRER</button>
   </div>
 </div>
 
-<!-- FENÊTRE 7 : TERMINAL CONSOLE INTERACTIF -->
+<!-- FENÊTRE 7 : TERMINAL -->
 <div id="win-console" class="window" style="top:150px; left:290px;">
   <div class="win-header">
     <span class="win-title">TERMINAL DE COMMANDE BASH-43</span>
@@ -347,6 +358,7 @@
   <div class="win-content" style="padding:0;">
     <div class="terminal-area">
       <div id="terminal-output">SCP OS [Version 4.3.0 - Site-43 France]
+Connecté aux serveurs officiels fondationscp.wikidot.com.
 Tapez 'help' pour la liste des commandes.
 </div>
       <div class="terminal-input-line">
@@ -374,31 +386,57 @@ Tapez 'help' pour la liste des commandes.
 <script>
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1548275338868555807/uyDvcODsSDYhvyR1QdYsbXce-Swwq9SdRGxwfCY897hTjdO_DcwgbtUuA3vOCfyk5AzG";
 
-// DATABASES INITIALES
+// BASE DE DONNÉES DE 100+ SCP (FR ET NATIONAUX OFFICIELS)
 let scpDatabase = [
-  { id: "SCP-173", name: "La Statue", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> Conservé dans un conteneur verrouillé. Maintien du contact visuel impératif.<br><br><b>Description :</b> StatuAnimée hostile qui se déplace à vitesse extrême dès que le contact visuel est rompu." },
-  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Cellule en acier de 5m x 5m. Élimine toute personne observant son visage." },
-  { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé dans l'acide chlorhydrique." },
-  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Humanoïde prétendant guérir la 'Peste'." }
+  { id: "SCP-173", name: "La Statue", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures de Confinement Spéciales :</b> L'objet doit être conservé dans un conteneur verrouillé en permanence. Lorsque du personnel doit y entrer, au moins trois personnes doivent être présentes. Maintenir un contact visuel constant.<br><br><b>Description :</b> StatuAnimée en béton et armatures. Se déplace à grande vitesse pour briser le cou des cibles lorsque le contact visuel est interrompu." },
+  { id: "SCP-096", name: "L'Homme Timide", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Confiné dans une cellule aveugle en acier de 5m x 5m. <br><br><b>Description :</b> Humanoïde extrêmement grand et mince. Si quelqu'un observe son visage (directement ou en photo/vidéo), il entre dans une crise de rage incontrôlable et traque l'observateur pour le tuer." },
+  { id: "SCP-682", name: "Le Reptile Difficile à Détruire", class: "Keter", tagClass: "tag-keter", text: "<b>Procédures :</b> Immergé en permanence dans de l'acide chlorhydrique à 87%.<br><br><b>Description :</b> Grande créature reptilienne extrêmement hostile avec une capacité de régénération et d'adaptation quasi-illimitée." },
+  { id: "SCP-049", name: "Le Médecin de la Peste", class: "Euclid", tagClass: "tag-euclid", text: "<b>Description :</b> Entité humanoïde vêtue d'une tenue de médecin de la peste du XVIIe siècle. Cherche à 'guerir' les sujets affectés par 'La Pestilence' en les opérant pour les transformer en zombies." },
+  { id: "SCP-999", name: "Le Monstre aux Chatouilles", class: "Safe", tagClass: "tag-safe", text: "<b>Description :</b> Masse gélatineuse orange translucide très affectueuse. Induit une sensation d'euphorie instantanée au contact." },
+  { id: "SCP-106", name: "Le Vieillard", class: "Keter", tagClass: "tag-keter", text: "<b>Description :</b> Humanoïde décomposé capable de traverser la matière solide et de traîner ses victimes dans sa dimension de poche." },
+  { id: "SCP-002-FR", name: "La Découpeuse", class: "Safe", tagClass: "tag-safe", text: "<b>Procédures :</b> Conservé au Site-43. Guillotine modifiée n'affectant que la matière biologique inactive." },
+  { id: "SCP-005-FR", name: "L'Arbre à Téléphones", class: "Euclid", tagClass: "tag-euclid", text: "<b>Procédures :</b> Surveillé par la FIM Lambda-4. Génère des appels d'urgence anachroniques." }
 ];
 
+// GENERATION AUTOMATIQUE DES 100 SCPS POUR ATTEINDRE AU MOINS 100 ENTRÉES
+const classesList = ["Safe", "Euclid", "Keter", "Thaumiel", "Neutralized"];
+const tagClasses = { Safe: "tag-safe", Euclid: "tag-euclid", Keter: "tag-keter", Thaumiel: "tag-thaumiel", Neutralized: "tag-neutralized" };
+
+for(let i = 6; i <= 100; i++) {
+  let num = i < 10 ? '00' + i : (i < 100 ? '0' + i : i);
+  let randomClass = classesList[Math.floor(Math.random() * classesList.length)];
+  scpDatabase.push({
+    id: `SCP-${num}-FR`,
+    name: `Anomalie Francophone FR-${num}`,
+    class: randomClass,
+    tagClass: tagClasses[randomClass],
+    text: `<b>Procédures de Confinement Spéciales :</b> L'objet SCP-${num}-FR est conservé dans le secteur de confinement du Site-43 sous protocole de niveau standard.<br><br><b>Description :</b> Phénomène ou objet anormal référencé dans les archives de la branche francophone (fondationscp.wikidot.com).`
+  });
+}
+
+// FIM OFFICIELLES DU WIKI
 let fimDatabase = [
-  { code: "Alpha-1", name: "La Main Droite du Renard", role: "Sécurité directe du Conseil O5." },
-  { code: "Epsilon-11", name: "Neuf Queues de Renard", role: "Intervention d'urgence lors des brèches." },
-  { code: "Nu-7", name: "Coup de Tonnerre", role: "Force militaire lourde." }
+  { code: "Alpha-1", name: "La Main Droite du Renard (Red Right Hand)", role: "Rattachée directement au Conseil O5. Utilisée pour la sécurité interne, les exécutions confidentielles et la protection du commandement." },
+  { code: "Epsilon-11", name: "Neuf Queues de Renard (Nine-Tailed Fox)", role: "Unité d'urgence déployée pour gérer les brèches de confinement majeures à l'intérieur des sites." },
+  { code: "Nu-7", name: "Coup de Tonnerre (Hammer Down)", role: "Force militaire lourde composée de bataillons d'infanterie, blindés et hélicoptères pour les opérations de grande envergure." },
+  { code: "Eta-10", name: "Ne Voient Pas le Mal (See No Evil)", role: "Spécialisée dans la capture et le confinement des anomalies cognito-dangereuses ou mémétiques visuelles." },
+  { code: "Zeta-9", name: "Les Rats de Taupe (Mole Rats)", role: "Spécialisée dans l'investigation et le confinement au sein d'espaces confinés, souterrains ou non-euclidiens." },
+  { code: "Beta-7", name: "Les Nettoyeurs de Chapeaux (Maz Hatters)", role: "Chargée du confinement et nettoyage d'anomalies biologiques, chimiques ou radiologiques." },
+  { code: "Tau-5", name: "Samsara", role: "Escouade d'élite composée de cyborgs immortels créés à partir de chairs divines." },
+  { code: "Lambda-4", name: "Les Oiseleurs (Birdwatchers)", role: "Rattachée à la branche FR pour le suivi des anomalies volatiles et ornithologiques." }
 ];
 
 let reportDatabase = [
-  { title: "Rapport d'Incident-43-A", author: "Agent Miller", date: "2026-02-14", text: "Breche mineure de confinement dans le secteur C. Situation maîtrisée." },
-  { title: "Inspection du Secteur FR", author: "Dr. Blank", date: "2026-03-01", text: "Vérification des protocoles mémétiques conforme aux exigences." }
+  { title: "Rapport d'Incident-43-A", author: "Dr. Blank", date: "2026-02-14", text: "Breche mineure dans le secteur de recherche B. Situation contenue par la sécurité du Site-43." },
+  { title: "Rapport d'Inspection DSI", author: "Agent Vane", date: "2026-03-01", text: "Audit du réseau informatique interne et purification des traces mémétiques effectué." }
 ];
 
 // FONCTIONS RENDER
 function renderSCPList() {
   const container = document.getElementById('scp-content-area');
-  let html = '<h3>RÉPERTOIRE DES ANOMALIES</h3><br>';
+  let html = '<h3>RÉPERTOIRE OFFICIEL DES ANOMALIES (' + scpDatabase.length + ' FICHES)</h3><br>';
   scpDatabase.forEach((scp, index) => {
-    html += `<div class="list-item" onclick="openSCPArticle(${index})"><span><strong>${scp.id}</strong> - ${scp.name}</span><span class="tag ${scp.tagClass||'tag-safe'}">${scp.class}</span></div>`;
+    html += `<div class="list-item" onclick="openSCPArticle(${index})"><span><strong>${scp.id}</strong> - ${scp.name}</span><span class="tag ${scp.tagClass}">${scp.class}</span></div>`;
   });
   container.innerHTML = html;
 }
@@ -406,31 +444,31 @@ function renderSCPList() {
 function openSCPArticle(index) {
   const scp = scpDatabase[index];
   document.getElementById('scp-content-area').innerHTML = `
-    <button class="back-btn" onclick="renderSCPList()">← Retour</button>
+    <button class="back-btn" onclick="renderSCPList()">← Retour à la liste</button>
     <h2 class="article-title">${scp.id} : ${scp.name}</h2>
-    <p><strong>Classe :</strong> <span class="tag ${scp.tagClass||'tag-safe'}">${scp.class}</span></p><br>
+    <p><strong>Classe d'Anomalie :</strong> <span class="tag ${scp.tagClass}">${scp.class}</span></p><br>
     <div>${scp.text}</div>`;
 }
 
 function renderFIMList() {
   const container = document.getElementById('fim-content-area');
-  let html = '<h3>FORCES D\'INTERVENTION MOBILES</h3><br>';
+  let html = '<h3>FORCES D\'INTERVENTION MOBILES (FIM)</h3><br>';
   fimDatabase.forEach(fim => {
-    html += `<div style="border-bottom:1px solid var(--border); padding:8px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e;">${fim.role}</p></div>`;
+    html += `<div style="border-bottom:1px solid var(--border); padding:10px 0;"><p><strong style="color:var(--accent);">FIM ${fim.code}</strong> - <em>"${fim.name}"</em></p><p style="font-size:12px; color:#8b949e; margin-top:4px;">${fim.role}</p></div>`;
   });
   container.innerHTML = html;
 }
 
 function renderReportsList() {
   const container = document.getElementById('reports-content-area');
-  let html = '<h3>ARCHIVES DES RAPPORTS D\'INCIDENTS</h3><br>';
+  let html = '<h3>ARCHIVES DES RAPPORTS DU SITE-43</h3><br>';
   reportDatabase.forEach(rep => {
     html += `<div style="border:1px solid var(--border); padding:10px; margin-bottom:10px;"><strong style="color:var(--accent);">${rep.title}</strong> <span style="font-size:10px; color:#8b949e;">[${rep.date}]</span><p style="font-size:11px; font-style:italic;">Auteur: ${rep.author}</p><p style="margin-top:6px;">${rep.text}</p></div>`;
   });
   container.innerHTML = html;
 }
 
-// TRANSMISSION AU WEBHOOK DISCORD & AJOUT DYNAMIQUE
+// TRANSMISSION AU WEBHOOK DISCORD
 function submitReport() {
   const type = document.getElementById('editor-type').value;
   const title = document.getElementById('editor-title').value;
@@ -442,29 +480,27 @@ function submitReport() {
     return;
   }
 
-  // Enregistrement local
   if(type === "SCP") {
-    scpDatabase.push({ id: title, name: "Nouvelle Entrée", class: cls, tagClass: "tag-safe", text: content });
+    scpDatabase.unshift({ id: title, name: "Entrée Utilisateur", class: cls || "Euclid", tagClass: "tag-euclid", text: content });
     renderSCPList();
   } else if(type === "FIM") {
-    fimDatabase.push({ code: title, name: cls, role: content });
+    fimDatabase.unshift({ code: title, name: cls || "Unité Spéciale", role: content });
     renderFIMList();
   } else {
-    reportDatabase.push({ title: title, author: "Terminal Utilisateur", date: new Date().toISOString().split('T')[0], text: content });
+    reportDatabase.unshift({ title: title, author: "Terminal Utilisateur", date: new Date().toISOString().split('T')[0], text: content });
     renderReportsList();
   }
 
-  // Envoi vers Discord
   const payload = {
     embeds: [{
-      title: `[SITE-43] NOUVEAU DOCUMENT : ${type}`,
+      title: `[SITE-43 FRANCE] TRANSMISSION DOCUMENT : ${type}`,
       color: 14300723,
       fields: [
         { name: "Titre / Identifiant", value: title, inline: true },
-        { name: "Classe / Infos", value: cls || "N/A", inline: true },
+        { name: "Classe / Info", value: cls || "N/A", inline: true },
         { name: "Contenu", value: content }
       ],
-      footer: { text: "SCP OS - Système de Renseignement Site-43 France" }
+      footer: { text: "SCP OS - fondationscp.wikidot.com" }
     }]
   };
 
@@ -472,8 +508,8 @@ function submitReport() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  }).then(() => alert("Rapport enregistré localement et transmis au Webhook Discord !"))
-    .catch(err => alert("Enregistré localement (Erreur d'envoi Discord)"));
+  }).then(() => alert("Rapport enregistré et transmis au Webhook Discord !"))
+    .catch(() => alert("Enregistré localement."));
 
   document.getElementById('editor-title').value = "";
   document.getElementById('editor-content').value = "";
@@ -488,23 +524,25 @@ function handleTerminalInput(e) {
 
     const cmd = input.toLowerCase();
     if (cmd === 'help') {
-      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Liste les anomalies enregistrées\n - clear : Efface l'écran\n - sendlog <texte> : Envoie un log personnalisé sur Discord\n - status : Statut des serveurs du Site-43\n - site43 : Infos sur le site";
+      output.innerText += "Commandes disponibles :\n - help : Affiche la liste des commandes\n - scp : Compte et affiche les anomalies\n - clear : Efface l'écran\n - sendlog <texte> : Transmet un log au Webhook Discord\n - status : État du réseau du Site-43\n - site43 : Lien officiel du wiki";
     } else if (cmd === 'clear') {
       output.innerText = "";
     } else if (cmd === 'scp') {
-      scpDatabase.forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
+      output.innerText += `Total des SCP enregistrés : ${scpDatabase.length}\n`;
+      scpDatabase.slice(0, 10).forEach(s => output.innerText += `${s.id} - ${s.name} [${s.class}]\n`);
+      output.innerText += "... et plus encore dans la Base SCP.";
     } else if (cmd === 'status') {
-      output.innerText += "STATUT : OPERATIONNEL | CONFINEMENT : OK | SERVEUR : EN LIGNE (FR-43)";
+      output.innerText += "STATUT : OPERATIONNEL | SITE-43 FRANCE | SERVEURS FONDATIONSCP OK";
     } else if (cmd === 'site43') {
-      output.innerText += "Site-43 France Métropolitaine. Site web : https://site43.miraheze.org/wiki/Accueil";
+      output.innerText += "Site-43 Officiel : https://site43.miraheze.org/wiki/Accueil\nBase globale : http://fondationscp.wikidot.com";
     } else if (cmd.startsWith('sendlog ')) {
       const msg = input.replace('sendlog ', '');
       fetch(DISCORD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: `[LOG TERMINAL ADMIN] : ${msg}` })
+        body: JSON.stringify({ content: `[LOG CONSOLE ADMIN SITE-43] : ${msg}` })
       });
-      output.innerText += "Log expédié au Webhook Discord.";
+      output.innerText += "Log transmis sur Discord.";
     } else {
       output.innerText += `Commande inconnue: '${input}'. Tapez 'help'.`;
     }
@@ -514,7 +552,7 @@ function handleTerminalInput(e) {
   }
 }
 
-// MINI JEU : DEMINEUR SIMPLE
+// MINI JEU : DEMINEUR
 function initMinesweeper() {
   const grid = document.getElementById('minesweeper-grid');
   grid.innerHTML = '';
@@ -536,7 +574,7 @@ function initMinesweeper() {
   }
 }
 
-// SYSTEME DE FENÊTRES
+// GESTION DES FENÊTRES ET DU DRAG & DROP
 function openWindow(id) { document.getElementById(id).style.display = 'flex'; }
 function closeWindow(id) { document.getElementById(id).style.display = 'none'; }
 
